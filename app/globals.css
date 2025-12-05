@@ -1,8 +1,22 @@
+@font-face {
+  font-family: 'Rhapson Script';
+  src: url('/assets/fonts/Rhapson Script Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @import "tailwindcss";
 
 :root {
-  --background: #e0f2fe;
-  --foreground: #0c4a6e;
+  /* Deep Black Theme */
+  --background: #030303;
+  --foreground: #ffffff;
+
+  /* Gradient Glow Colors */
+  --glow-primary: rgba(59, 130, 246, 0.15);
+  /* Blue */
+  --glow-secondary: rgba(59, 130, 246, 0.15);
+  /* Blue */
 }
 
 @theme inline {
@@ -11,17 +25,51 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-rubik-wet-paint: var(--font-rubik-wet-paint);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Modern Palette */
+  --color-primary: #3B82F6;
+  --color-primary-glow: var(--glow-primary);
+  --color-secondary-glow: var(--glow-secondary);
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-20px);
+    }
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  /* Prevent horizontal scroll from glows */
+}
+
+/* Custom Utilities */
+.glass-nav {
+  background: rgba(3, 3, 3, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #fff, #94a3b8);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-glow-gradient {
+  background: radial-gradient(circle at 50% 50%, var(--glow-primary), transparent 70%);
 }
