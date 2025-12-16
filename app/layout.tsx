@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Rubik_Wet_Paint } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "../components/ThemeContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,11 +32,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${rubikWetPaint.variable} antialiased bg-[#050505] text-white`}
+        className={`${geistSans.variable} ${geistMono.variable} ${rubikWetPaint.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

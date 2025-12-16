@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTheme } from './ThemeContext';
 
 const navItems = [
   { name: 'Home', href: '#' },
@@ -10,9 +11,34 @@ const navItems = [
   { name: 'Blog', href: '#blog' },
 ];
 
+// Sun icon for light mode
+const SunIcon = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
+    />
+  </svg>
+);
+
+// Moon icon for dark mode
+const MoonIcon = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
+    />
+  </svg>
+);
+
 export default function HeaderNav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,12 +58,14 @@ export default function HeaderNav() {
       <div
         className={`
           relative flex items-center justify-between px-6 py-3 rounded-full transition-all duration-300 h-14 overflow-visible
-          ${scrolled ? 'bg-black/50 backdrop-blur-xl border border-white/10 shadow-lg w-[90%] max-w-5xl' : 'bg-transparent w-full max-w-6xl'}
+          ${scrolled
+            ? 'bg-white/50 dark:bg-black/50 backdrop-blur-xl border border-black/10 dark:border-white/10 shadow-lg w-[90%] max-w-5xl'
+            : 'bg-transparent w-full max-w-6xl'}
         `}
       >
-        {/* Glass Background for non-scrolled state (optional, or just keep transparent) */}
+        {/* Glass Background for non-scrolled state */}
         {!scrolled && (
-          <div className="absolute inset-0 bg-white/5 backdrop-blur-md rounded-full border border-white/5 -z-10" />
+          <div className="absolute inset-0 bg-black/5 dark:bg-white/5 backdrop-blur-md rounded-full border border-black/5 dark:border-white/5 -z-10" />
         )}
 
         {/* Logo Area */}
@@ -45,7 +73,7 @@ export default function HeaderNav() {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 287.0050963399838 149.5127942560963"
-            className="relative z-10 h-16 w-auto text-white"
+            className="relative z-10 h-16 w-auto text-slate-900 dark:text-white"
             fill="currentColor"
           >
             <g transform="translate(143.5025481699919, 74.75639712804815) rotate(-5) translate(-143.5025481699919, -74.75639712804815)">
@@ -62,7 +90,7 @@ export default function HeaderNav() {
             <a
               key={item.name}
               href={item.href}
-              className="text-sm font-medium text-gray-300 hover:text-white transition-colors relative group"
+              className="text-sm font-medium text-slate-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white transition-colors relative group"
             >
               {item.name}
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full" />
@@ -70,16 +98,25 @@ export default function HeaderNav() {
           ))}
         </div>
 
-        {/* Right Side: Mobile Menu Button + CTA Button */}
+        {/* Right Side: Theme Toggle + Mobile Menu Button + CTA Button */}
         <div className="flex items-center gap-3">
+          {/* Theme Toggle Button */}
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition-colors text-slate-700 dark:text-white"
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          >
+            {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+          </button>
+
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors"
+            className="md:hidden p-2 rounded-full bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition-colors text-slate-700 dark:text-white"
             aria-label="Toggle menu"
           >
             <svg
-              className="w-5 h-5 text-white"
+              className="w-5 h-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -93,7 +130,7 @@ export default function HeaderNav() {
           </button>
 
           {/* CTA Button */}
-          <button className="px-5 py-2 rounded-full bg-white text-black text-sm font-bold hover:bg-gray-200 transition-colors shadow-[0_0_10px_rgba(255,255,255,0.2)]">
+          <button className="px-5 py-2 rounded-full bg-slate-900 dark:bg-white text-white dark:text-black text-sm font-bold hover:bg-slate-700 dark:hover:bg-gray-200 transition-colors shadow-[0_0_10px_rgba(0,0,0,0.1)] dark:shadow-[0_0_10px_rgba(255,255,255,0.2)]">
             Contact Me
           </button>
         </div>
@@ -106,14 +143,14 @@ export default function HeaderNav() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-full right-4 mt-2 w-48 py-2 bg-black/90 backdrop-blur-xl border border-white/10 rounded-2xl shadow-xl md:hidden"
+              className="absolute top-full right-4 mt-2 w-48 py-2 bg-white/90 dark:bg-black/90 backdrop-blur-xl border border-black/10 dark:border-white/10 rounded-2xl shadow-xl md:hidden"
             >
               {navItems.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block px-4 py-3 text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+                  className="block px-4 py-3 text-sm font-medium text-slate-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
                 >
                   {item.name}
                 </a>
@@ -125,3 +162,4 @@ export default function HeaderNav() {
     </motion.nav>
   );
 }
+
