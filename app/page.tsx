@@ -3,6 +3,7 @@ import AnimatedText from "../components/AnimatedText";
 import HeaderNav from "../components/HeaderNav";
 import HeroVisual from "../components/HeroVisual";
 import SkillsSection from "../components/SkillsSection";
+import ProjectsSection from "../components/ProjectsSection";
 
 export default function Home() {
   return (
@@ -72,6 +73,7 @@ export default function Home() {
 
       {/* Skills/Services Section */}
       <SkillsSection />
+      <ProjectsSection />
     </div>
   );
 }
