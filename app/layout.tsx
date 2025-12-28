@@ -24,6 +24,26 @@ const rubikWetPaint = Rubik_Wet_Paint({
 export const metadata: Metadata = {
   title: "Samuel Surf Portfolio",
   description: "Full Stack Software Developer specializing in Mobile Applications, Backend Development, and AI Integrations. Explore my projects and get in touch.",
+  keywords: ["Full Stack Developer", "Mobile Development", "AI Integration", "Backend Development", "Flutter", "Next.js"],
+  authors: [{ name: "Samuel Surf" }],
+  creator: "Samuel Surf",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://your-vercel-domain.vercel.app",
+    title: "Samuel Surf Portfolio",
+    description: "Full Stack Software Developer specializing in Mobile Applications, Backend Development, and AI Integrations. Explore my projects and get in touch.",
+    siteName: "Samuel Surf Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Samuel Surf Portfolio",
+    description: "Full Stack Software Developer specializing in Mobile Applications, Backend Development, and AI Integrations. Explore my projects and get in touch.",
+  },
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+  },
 };
 
 export default function RootLayout({
