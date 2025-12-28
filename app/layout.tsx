@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://your-vercel-domain.vercel.app",
+    url: "https://samuelsurf.vercel.app",
     title: "Samuel Surf Portfolio",
     description: "Full Stack Software Developer specializing in Mobile Applications, Backend Development, and AI Integrations. Explore my projects and get in touch.",
     siteName: "Samuel Surf Portfolio",
