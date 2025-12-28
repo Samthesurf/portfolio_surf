@@ -4,6 +4,7 @@ import HeaderNav from "../components/HeaderNav";
 import HeroVisual from "../components/HeroVisual";
 import SkillsSection from "../components/SkillsSection";
 import ProjectsSection from "../components/ProjectsSection";
+import ContactSection from "../components/ContactSection";
 
 export default function Home() {
   return (
@@ -55,10 +56,10 @@ export default function Home() {
                   See my work
                 </a>
 
-                <button className="px-8 py-4 rounded-full border border-slate-900 dark:border-white/10 text-slate-900 dark:text-white font-semibold text-lg hover:bg-slate-100 dark:hover:bg-white/5 hover:border-slate-900 dark:hover:border-white/30 transition-all active:scale-95 backdrop-blur-sm flex items-center gap-2 group">
+                <a href="#contact" className="px-8 py-4 rounded-full border border-slate-900 dark:border-white/10 text-slate-900 dark:text-white font-semibold text-lg hover:bg-slate-100 dark:hover:bg-white/5 hover:border-slate-900 dark:hover:border-white/30 transition-all active:scale-95 backdrop-blur-sm flex items-center gap-2 group">
                   Contact me
                   <span className="group-hover:translate-x-1 transition-transform">→</span>
-                </button>
+                </a>
               </div>
             </div>
 
@@ -74,6 +75,9 @@ export default function Home() {
       {/* Skills/Services Section */}
       <SkillsSection />
       <ProjectsSection />
+
+      {/* Contact Section */}
+      <ContactSection />
     </div>
   );
 }

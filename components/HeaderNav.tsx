@@ -130,9 +130,9 @@ export default function HeaderNav() {
           </button>
 
           {/* CTA Button */}
-          <button className="px-5 py-2 rounded-full bg-slate-900 dark:bg-white text-white dark:text-black text-sm font-bold hover:bg-slate-700 dark:hover:bg-gray-200 transition-colors shadow-[0_0_10px_rgba(0,0,0,0.1)] dark:shadow-[0_0_10px_rgba(255,255,255,0.2)]">
+          <a href="#contact" className="px-5 py-2 rounded-full bg-slate-900 dark:bg-white text-white dark:text-black text-sm font-bold hover:bg-slate-700 dark:hover:bg-gray-200 transition-colors shadow-[0_0_10px_rgba(0,0,0,0.1)] dark:shadow-[0_0_10px_rgba(255,255,255,0.2)]">
             Contact Me
-          </button>
+          </a>
         </div>
 
         {/* Mobile Dropdown Menu */}
