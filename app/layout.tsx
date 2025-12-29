@@ -40,10 +40,11 @@ export const metadata: Metadata = {
     title: "Samuel Surf Portfolio",
     description: "Full Stack Software Developer specializing in Mobile Applications, Backend Development, and AI Integrations. Explore my projects and get in touch.",
   },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-  },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({

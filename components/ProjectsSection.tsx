@@ -70,6 +70,12 @@ const LinkIcon = () => (
     </svg>
 );
 
+const DownloadIcon = () => (
+    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+    </svg>
+);
+
 // --- Projects Data ---
 const projects = [
     {
@@ -89,6 +95,7 @@ const projects = [
         links: {
             github: "https://github.com/Samthesurf/pro_buddy",
             demo: "#",
+            apkDownload: "/downloads/hawk-buddy.apk", // Path to APK file in public folder
         },
         featured: true,
     }
@@ -216,6 +223,19 @@ export default function ProjectsSection() {
                                         </div>
                                         <span>View Code</span>
                                     </a>
+
+                                    {/* APK Download Button - Only show if apkDownload link exists */}
+                                    {project.links.apkDownload && (
+                                        <a
+                                            href={project.links.apkDownload}
+                                            download
+                                            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-bold transition-all shadow-lg hover:shadow-xl active:scale-95"
+                                        >
+                                            <DownloadIcon />
+                                            <span>Download APK</span>
+                                        </a>
+                                    )}
+
                                     <a
                                         href={project.links.demo}
                                         className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-slate-200 dark:border-white/10 hover:border-slate-400 dark:hover:border-white/30 text-slate-700 dark:text-white font-semibold transition-all hover:bg-slate-50 dark:hover:bg-white/5 active:scale-95"
