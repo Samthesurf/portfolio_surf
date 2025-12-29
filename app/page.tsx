@@ -4,6 +4,7 @@ import HeaderNav from "../components/HeaderNav";
 import HeroVisual from "../components/HeroVisual";
 import SkillsSection from "../components/SkillsSection";
 import ProjectsSection from "../components/ProjectsSection";
+import BlogSection from "../components/BlogSection";
 import ContactSection from "../components/ContactSection";
 
 export default function Home() {
@@ -75,6 +76,9 @@ export default function Home() {
       {/* Skills/Services Section */}
       <SkillsSection />
       <ProjectsSection />
+
+      {/* Blog Section */}
+      <BlogSection />
 
       {/* Contact Section */}
       <ContactSection />
