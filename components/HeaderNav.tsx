@@ -68,8 +68,9 @@ export default function HeaderNav() {
           <div className="absolute inset-0 bg-black/5 dark:bg-white/5 backdrop-blur-md rounded-full border border-black/5 dark:border-white/5 -z-10" />
         )}
 
-        {/* Logo Area */}
+        {/* Logo Area + Mobile Controls (left side) */}
         <div className="flex items-center gap-2">
+          {/* Logo */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 287.0050963399838 149.5127942560963"
@@ -82,6 +83,38 @@ export default function HeaderNav() {
               </g>
             </g>
           </svg>
+
+          {/* Theme Toggle & Menu (Mobile Only) - positioned next to logo */}
+          <div className="flex md:hidden items-center gap-2">
+            {/* Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition-colors text-slate-700 dark:text-white"
+              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            >
+              {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
+            </button>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="p-2 rounded-full bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition-colors text-slate-700 dark:text-white"
+              aria-label="Toggle menu"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                {mobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
 
         {/* Navigation Links - Desktop */}
@@ -98,35 +131,15 @@ export default function HeaderNav() {
           ))}
         </div>
 
-        {/* Right Side: Theme Toggle + Mobile Menu Button + CTA Button */}
+        {/* Right Side: Theme Toggle (Desktop) + CTA Button */}
         <div className="flex items-center gap-3">
-          {/* Theme Toggle Button */}
+          {/* Theme Toggle Button - Desktop Only */}
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-full bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition-colors text-slate-700 dark:text-white"
+            className="hidden md:block p-2 rounded-full bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition-colors text-slate-700 dark:text-white"
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
           >
             {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
-          </button>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 rounded-full bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition-colors text-slate-700 dark:text-white"
-            aria-label="Toggle menu"
-          >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              {mobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
           </button>
 
           {/* CTA Button */}
