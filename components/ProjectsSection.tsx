@@ -235,14 +235,6 @@ export default function ProjectsSection() {
                                             <span>Download APK</span>
                                         </a>
                                     )}
-
-                                    <a
-                                        href={project.links.demo}
-                                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-slate-200 dark:border-white/10 hover:border-slate-400 dark:hover:border-white/30 text-slate-700 dark:text-white font-semibold transition-all hover:bg-slate-50 dark:hover:bg-white/5 active:scale-95"
-                                    >
-                                        <LinkIcon />
-                                        <span>Live Demo</span>
-                                    </a>
                                 </div>
                             </div>
                         </div>

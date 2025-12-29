@@ -204,6 +204,13 @@ export default function ContactSection() {
                         </form>
                     </div>
                 </div>
+
+                {/* Footer */}
+                <div className="mt-24 pt-8 border-t border-slate-200 dark:border-white/10">
+                    <p className="text-center text-slate-500 dark:text-gray-400 text-sm">
+                        © 2025 Samuel Ukpai. All Rights Reserved.
+                    </p>
+                </div>
             </div>
         </section>
     );
