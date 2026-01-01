@@ -97,7 +97,7 @@ const projects = [
     {
         title: "Hawk Buddy",
         description: "AI-Powered Productivity Coach that Aligns Your Phone Usage with Your Goals",
-        longDescription: "Hawk Buddy is a goal-aligned productivity companion that helps users reclaim control over their digital habits. Unlike traditional screen-time apps that simply block or limit usage, Hawk Buddy takes an intelligent approach: it understands why you use certain apps and determines whether that usage aligns with your personal goals. The app features an AI-powered conversational coach that provides encouragement, feedback, and personalized progress summaries, making productivity feel like having a supportive buddy rather than a restrictive tool.",
+        longDescription: "Hawk Buddy is a goal-aligned productivity companion that helps users reclaim control over their digital habits. Unlike traditional screen-time apps that simply block or limit usage, Hawk Buddy takes an intelligent approach: it understands why you use certain apps and determines whether that usage aligns with your personal goals. The app features an AI-powered conversational coach that provides encouragement, feedback, and personalized progress summaries, making productivity feel like having a supportive friend rather than a restrictive tool.",
         image: hawkBuddyDashboard,
         tags: ["Flutter", "Python", "FastAPI", "Gemini AI", "Cloudflare", "Firebase", "Oracle Cloud"],
         techStack: [
