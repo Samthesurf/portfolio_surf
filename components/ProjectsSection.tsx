@@ -4,7 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
 // Import assets
-import hawkBuddyDashboard from "../assets/images/hawk_buddy_dashboard.png";
+import hawkBuddyDashboard from "../assets/images/hawk_buddy_dashboard_br.png";
+import screenTimeImg from "../assets/images/screen_time.jpg";
+import appConfigImg from "../assets/images/App_config.jpg";
 import firebaseLogo from "../assets/firebase-1.svg";
 import cloudflareLogo from "../assets/cloudflare.svg";
 import oracleLogo from "../assets/oracle-corporation-logo.svg";
@@ -15,6 +17,23 @@ import flutterLogo from "../assets/dart.svg"; // Fallback or if user wants Dart 
 // Given the user said "all wrong icons" and listed specific ones, I will update those.
 // For Flutter, since it wasn't in the "wrong" list, I'll keep the inline one but make it cleaner, 
 // OR I can use the dart logo if that's what they meant. I'll stick to inline Flutter for accuracy of "Flutter".
+
+// --- Helper Component: Phone Frame for Raw Screenshots ---
+const PhoneFrame = ({ src, alt }: { src: any; alt: string }) => (
+    <div className="relative h-full w-full bg-[#121212] rounded-[2.5rem] shadow-xl border-[6px] border-[#1a1a1a] ring-1 ring-white/10 overflow-hidden">
+        {/* Screen Content */}
+        <div className="relative h-full w-full bg-white dark:bg-black rounded-[2rem] overflow-hidden">
+            <Image
+                src={src}
+                alt={alt}
+                fill
+                className="object-cover"
+            />
+        </div>
+        {/* Notch */}
+        <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-6 bg-black rounded-full z-20" />
+    </div>
+);
 
 // --- Icon Components ---
 
@@ -165,20 +184,39 @@ export default function ProjectsSection() {
                             className={`flex flex-col lg:flex-row gap-12 items-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
                             style={{ transitionDelay: `${index * 200}ms` }}
                         >
-                            {/* Project Image */}
-                            <div className="w-full lg:w-1/2 relative group">
-                                <div className="absolute inset-0 bg-blue-500/20 dark:bg-blue-500/10 rounded-2xl md:rounded-3xl blur-2xl transform group-hover:scale-105 transition-transform duration-500" />
-                                <div className="relative overflow-hidden rounded-2xl md:rounded-3xl border border-slate-200 dark:border-white/10 shadow-2xl bg-white dark:bg-slate-900">
-                                    <div className="aspect-[4/3] md:aspect-[16/9] relative">
+                            {/* Project Image - 3D Fan Layout */}
+                            <div className="w-full lg:w-1/2 flex justify-center perspective-1000 group">
+                                <div className="relative w-full max-w-[500px] h-[450px] md:h-[550px] flex items-center justify-center">
+                                    
+                                    {/* Left Phone (Screen Time) - Tilted Left */}
+                                    <div className="absolute left-1/2 top-1/2 w-[160px] md:w-[200px] aspect-[9/19] 
+                                        transform -translate-x-[90%] -translate-y-1/2 rotate-y-12 -rotate-z-3 scale-90 z-0 
+                                        transition-all duration-700 ease-out 
+                                        group-hover:-translate-x-[110%] group-hover:rotate-y-20 group-hover:scale-95 group-hover:z-10">
+                                       <PhoneFrame src={screenTimeImg} alt="Hawk Buddy Screen Time" />
+                                    </div>
+
+                                    {/* Right Phone (App Config) - Tilted Right */}
+                                    <div className="absolute left-1/2 top-1/2 w-[160px] md:w-[200px] aspect-[9/19] 
+                                        transform -translate-x-[10%] -translate-y-1/2 -rotate-y-12 rotate-z-3 scale-90 z-0 
+                                        transition-all duration-700 ease-out 
+                                        group-hover:translate-x-[10%] group-hover:-rotate-y-20 group-hover:scale-95 group-hover:z-10">
+                                       <PhoneFrame src={appConfigImg} alt="Hawk Buddy App Config" />
+                                    </div>
+
+                                    {/* Center Phone (Dashboard) - Front & Center */}
+                                    <div className="absolute left-1/2 top-1/2 w-[180px] md:w-[230px] aspect-[9/19] 
+                                        transform -translate-x-1/2 -translate-y-1/2 z-20 
+                                        transition-all duration-700 ease-out 
+                                        group-hover:scale-105 group-hover:-translate-y-[55%] drop-shadow-2xl">
                                         <Image
-                                            src={project.image}
+                                            src={project.image} // This is the hawk_buddy_dashboard_br.png
                                             alt={project.title}
                                             fill
-                                            className="object-cover object-top transform group-hover:scale-105 transition-transform duration-700"
+                                            className="object-contain drop-shadow-2xl"
                                         />
-                                        {/* Overlay gradient */}
-                                        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                                     </div>
+
                                 </div>
                             </div>
 
