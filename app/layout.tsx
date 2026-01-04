@@ -3,6 +3,8 @@ import { Geist, Geist_Mono, Rubik_Wet_Paint } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "../components/ThemeContext";
 
+export const runtime = "edge";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -34,6 +36,9 @@ export const metadata: Metadata = {
   publisher: "Samuel Surf",
   alternates: {
     canonical: baseUrl,
+  },
+  icons: {
+    icon: "/icon.svg",
   },
   openGraph: {
     type: "website",
