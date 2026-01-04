@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     title: "Samuel Surf Portfolio | Full Stack Software Developer",
     description: "Full Stack Software Developer specializing in Mobile Applications, Backend Development, and AI Integrations. Explore my projects and get in touch.",
     images: ["/og-image.png"],
-    creator: "@samthesurf",
+    creator: "@SamuelSurfboard",
   },
   robots: {
     index: true,
@@ -96,8 +96,9 @@ const jsonLd = {
     "Cloud Services",
   ],
   sameAs: [
-    "https://x.com/samthesurf",
-    "https://linkedin.com/in/samuelsurf",
+    "https://github.com/Samthesurf",
+    "https://x.com/SamuelSurfboard",
+    "https://www.linkedin.com/in/samuel-ukpai-641a3224a",
     "https://samuelsurf.medium.com",
   ],
 };
