@@ -131,7 +131,7 @@ const projects = [
         links: {
             github: "https://github.com/Samthesurf/pro_buddy",
             demo: "#",
-            apkDownload: "https://pub-cf86be98216443899aa1280bf26bada2.r2.dev/hawk-buddy.apk", // Path to APK file in public folder
+            apkDownload: "https://pub-cf86be98216443899aa1280bf26bada2.r2.dev/hawk-buddy-v1-2.apk", // Path to APK file in public folder
         },
         featured: true,
     }
