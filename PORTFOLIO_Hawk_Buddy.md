@@ -21,7 +21,7 @@
 |--------|-------|
 | **Target Audience** | Young professionals & remote workers |
 | **Problem Solved** | Digital distraction & phone addiction |
-| **AI Integration** | Google Gemini (Flash + Pro models) |
+| **AI Integration** | Google Gemini |
 | **Real-time DB** | Cloudflare D1 (SQLite at the edge) |
 | **Backend** | FastAPI on Oracle Cloud |
 | **Vector Search** | Cloudflare Vectorize |

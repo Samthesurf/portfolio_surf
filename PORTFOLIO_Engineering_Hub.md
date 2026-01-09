@@ -19,7 +19,7 @@
 |--------|-------|
 | **Platforms** | Android, Web (iOS-ready) |
 | **Architecture** | Clean Architecture with BLoC/GetX |
-| **AI Integration** | Google Gemini Pro & Flash |
+| **AI Integration** | Google Gemini |
 | **Real-time DB** | Firebase Firestore |
 | **Edge CDN** | Cloudflare R2 + Workers |
 
@@ -90,8 +90,8 @@ Custom infrastructure for blazing-fast document access:
 │   Firebase    │   │  Cloudflare   │   │   Google AI   │
 │   Platform    │   │     Edge      │   │   (Gemini)    │
 ├───────────────┤   ├───────────────┤   ├───────────────┤
-│ • Auth        │   │ • R2 Storage  │   │ • Pro Model   │
-│ • Firestore   │   │ • Workers     │   │ • Flash Model │
+│ • Auth        │   │ • R2 Storage  │   │ • Generative  │
+│ • Firestore   │   │ • Workers     │   │ • Multimodal  │
 │ • Cloud Func  │   │ • Global CDN  │   │ • Vision API  │
 │ • Analytics   │   │               │   │               │
 │ • Crashlytics │   │               │   │               │

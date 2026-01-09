@@ -1,14 +1,15 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from './ThemeContext';
 
 const navItems = [
-  { name: 'Home', href: '#' },
-  { name: 'Services', href: '#skills' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Blog', href: '#blog' },
+  { name: 'Home', hash: '' },
+  { name: 'Services', hash: '#skills' },
+  { name: 'Projects', hash: '#projects' },
+  { name: 'Blog', hash: '#blog' },
 ];
 
 // Sun icon for light mode
@@ -39,6 +40,9 @@ export default function HeaderNav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const pathname = usePathname();
+  const isHome = pathname === '/';
+  const hrefPrefix = isHome ? '' : '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -122,7 +126,7 @@ export default function HeaderNav() {
           {navItems.map((item) => (
             <a
               key={item.name}
-              href={item.href}
+              href={`${hrefPrefix}${item.hash}`}
               className="text-sm font-medium text-slate-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white transition-colors relative group"
             >
               {item.name}
@@ -143,7 +147,7 @@ export default function HeaderNav() {
           </button>
 
           {/* CTA Button */}
-          <a href="#contact" className="px-5 py-2 rounded-full bg-slate-900 dark:bg-white text-white dark:text-black text-sm font-bold hover:bg-slate-700 dark:hover:bg-gray-200 transition-colors shadow-[0_0_10px_rgba(0,0,0,0.1)] dark:shadow-[0_0_10px_rgba(255,255,255,0.2)]">
+          <a href={`${hrefPrefix}#contact`} className="px-5 py-2 rounded-full bg-slate-900 dark:bg-white text-white dark:text-black text-sm font-bold hover:bg-slate-700 dark:hover:bg-gray-200 transition-colors shadow-[0_0_10px_rgba(0,0,0,0.1)] dark:shadow-[0_0_10px_rgba(255,255,255,0.2)]">
             Contact Me
           </a>
         </div>
@@ -161,7 +165,7 @@ export default function HeaderNav() {
               {navItems.map((item) => (
                 <a
                   key={item.name}
-                  href={item.href}
+                  href={`${hrefPrefix}${item.hash}`}
                   onClick={() => setMobileMenuOpen(false)}
                   className="block px-4 py-3 text-sm font-medium text-slate-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
                 >
@@ -175,4 +179,3 @@ export default function HeaderNav() {
     </motion.nav>
   );
 }
-
