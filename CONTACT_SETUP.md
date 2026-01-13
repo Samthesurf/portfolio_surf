@@ -30,6 +30,24 @@ The contact form uses **Web3Forms** - a free service that sends form submissions
    - Fill out the contact form
    - Check your email!
 
+## 3. WhatsApp Privacy Link (Action Required)
+
+To keep your phone number private while letting people message you on WhatsApp, we use a short link service.
+
+### Setup Steps:
+
+1. **Generate Your Link:**
+   - Go to [create.wa.link](https://create.wa.link/)
+   - Enter your phone number.
+   - (Optional) Add a custom message like "Hi Samuel, I'd like to discuss a project..."
+   - Click "Generate my wa.link".
+   - Copy the short link (e.g., `wa.link/xyz123`).
+
+2. **Add it to the Code:**
+   - Open `components/ContactSection.tsx`.
+   - Search for `YOUR_LINK_HERE`.
+   - Replace both occurrences of `https://wa.link/YOUR_LINK_HERE` with your generated link.
+
 #### Option 2: Use Only the Email Button
 
 If you prefer to keep it simple, you can:

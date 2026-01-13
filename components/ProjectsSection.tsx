@@ -236,7 +236,7 @@ const projects: Project[] = [
         links: {
             github: "https://github.com/Samthesurf/pro_buddy",
             demo: "#",
-            apkDownload: "https://pub-cf86be98216443899aa1280bf26bada2.r2.dev/hawk-buddy-v1-4.apk",
+            apkDownload: "https://pub-cf86be98216443899aa1280bf26bada2.r2.dev/hawk-buddy-v1-6.apk",
             caseStudy: "/projects/hawk-buddy",
         },
         featured: true,

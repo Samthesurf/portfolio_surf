@@ -9,7 +9,7 @@
 
 2. **Copy the APK to this folder**:
    ```bash
-   cp /path/to/your/flutter/project/build/app/outputs/flutter-apk/app-release.apk ./public/downloads/hawk-buddy-v1-4.apk
+   cp /path/to/your/flutter/project/build/app/outputs/flutter-apk/app-release.apk ./public/downloads/hawk-buddy-v1-6.apk
    ```
 
 3. **That's it!** The download button will automatically appear on your portfolio.
@@ -43,6 +43,6 @@
 - These are better for large files and provide better download speeds
 
 ## Current Setup
-- **Path**: `/public/downloads/hawk-buddy-v1-4.apk`
-- **URL**: Your visitors will download from `https://yoursite.com/downloads/hawk-buddy-v1-4.apk`
+- **Path**: `/public/downloads/hawk-buddy-v1-6.apk`
+- **URL**: Your visitors will download from `https://yoursite.com/downloads/hawk-buddy-v1-6.apk`
 - **Button**: Blue gradient "Download APK" button with download icon
