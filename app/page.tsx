@@ -42,13 +42,12 @@ export default function Home() {
                   Full Stack Software Developer.
                 </span>
               </h1>
-              <p className="text-blue-500 dark:text-blue-400 text-lg md:text-xl font-medium mb-8">
-                Mobile Applications • Backend Development • AI Integrations
+              <p className="text-blue-500 dark:text-blue-400 text-lg md:text-xl font-medium mb-2">
+                Mobile Apps • Web Development • Backend • AI Integrations
               </p>
-
               <p className="text-slate-500 dark:text-gray-400 text-lg md:text-xl max-w-lg mb-10 leading-relaxed">
-                Crafting exceptional digital experiences with precision and passion.
-                Specializing in high-performance mobile applications.
+                Crafting exceptional digital experiences with precision and passion across
+                mobile apps, modern web, and AI-integrated backends.
               </p>
 
               {/* Buttons */}

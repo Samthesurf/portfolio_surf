@@ -7,7 +7,8 @@ import { useTheme } from './ThemeContext';
 
 const navItems = [
   { name: 'Home', hash: '' },
-  { name: 'Services', hash: '#skills' },
+  { name: 'About', hash: '/about', absolute: true as const },
+  { name: 'Technologies', hash: '#skills' },
   { name: 'Projects', hash: '#projects' },
   { name: 'Blog', hash: '#blog' },
 ];
@@ -123,16 +124,19 @@ export default function HeaderNav() {
 
         {/* Navigation Links - Desktop */}
         <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
-            <a
-              key={item.name}
-              href={`${hrefPrefix}${item.hash}`}
-              className="text-sm font-medium text-slate-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white transition-colors relative group"
-            >
-              {item.name}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full" />
-            </a>
-          ))}
+          {navItems.map((item) => {
+            const href = 'absolute' in item && item.absolute ? item.hash : `${hrefPrefix}${item.hash}`;
+            return (
+              <a
+                key={item.name}
+                href={href}
+                className="text-sm font-medium text-slate-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white transition-colors relative group"
+              >
+                {item.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 transition-all group-hover:w-full" />
+              </a>
+            );
+          })}
         </div>
 
         {/* Right Side: Theme Toggle (Desktop) + CTA Button */}
@@ -162,16 +166,19 @@ export default function HeaderNav() {
               transition={{ duration: 0.2 }}
               className="absolute top-full right-4 mt-2 w-48 py-2 bg-white/90 dark:bg-black/90 backdrop-blur-xl border border-black/10 dark:border-white/10 rounded-2xl shadow-xl md:hidden"
             >
-              {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={`${hrefPrefix}${item.hash}`}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className="block px-4 py-3 text-sm font-medium text-slate-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
-                >
-                  {item.name}
-                </a>
-              ))}
+              {navItems.map((item) => {
+                const href = 'absolute' in item && item.absolute ? item.hash : `${hrefPrefix}${item.hash}`;
+                return (
+                  <a
+                    key={item.name}
+                    href={href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className="block px-4 py-3 text-sm font-medium text-slate-600 dark:text-gray-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
+                  >
+                    {item.name}
+                  </a>
+                );
+              })}
             </motion.div>
           )}
         </AnimatePresence>

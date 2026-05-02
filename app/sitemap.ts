@@ -1,52 +1,42 @@
 import { MetadataRoute } from 'next';
+import { SITE } from '../lib/site-config';
 
 export const runtime = 'edge';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://samuelsurf.vercel.app';
+    const baseUrl = SITE.url;
+    const now = new Date();
 
     return [
         {
-            url: baseUrl,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
+            url: `${baseUrl}/`,
+            lastModified: now,
+            changeFrequency: 'weekly',
             priority: 1,
         },
         {
-            url: `${baseUrl}/#skills`,
-            lastModified: new Date(),
+            url: `${baseUrl}/about`,
+            lastModified: now,
+            changeFrequency: 'monthly',
+            priority: 0.9,
+        },
+        {
+            url: `${baseUrl}/projects/engineering-hub`,
+            lastModified: now,
             changeFrequency: 'monthly',
             priority: 0.8,
         },
         {
-            url: `${baseUrl}/#projects`,
-            lastModified: new Date(),
-            changeFrequency: 'weekly',
-            priority: 0.9,
-        },
-        {
-            url: `${baseUrl}/#blog`,
-            lastModified: new Date(),
-            changeFrequency: 'weekly',
-            priority: 0.7,
-        },
-        {
-            url: `${baseUrl}/#contact`,
-            lastModified: new Date(),
-            changeFrequency: 'yearly',
-            priority: 0.6,
-        },
-        {
-            url: `${baseUrl}/projects/engineering-hub`,
-            lastModified: new Date(),
-            changeFrequency: 'monthly',
-            priority: 0.7,
-        },
-        {
             url: `${baseUrl}/projects/hawk-buddy`,
-            lastModified: new Date(),
+            lastModified: now,
             changeFrequency: 'monthly',
-            priority: 0.7,
+            priority: 0.8,
+        },
+        {
+            url: `${baseUrl}/projects/campus-career`,
+            lastModified: now,
+            changeFrequency: 'monthly',
+            priority: 0.8,
         },
     ];
 }

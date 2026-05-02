@@ -149,10 +149,32 @@ const GitHubIcon = () => (
     </svg>
 );
 
+const ReactIcon = () => (
+    <svg viewBox="-11.5 -10.23174 23 20.46348" className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="0" cy="0" r="2.05" fill="#61dafb" />
+        <g stroke="#61dafb" strokeWidth="1" fill="none">
+            <ellipse rx="11" ry="4.2" />
+            <ellipse rx="11" ry="4.2" transform="rotate(60)" />
+            <ellipse rx="11" ry="4.2" transform="rotate(120)" />
+        </g>
+    </svg>
+);
+
+const WebIcon = () => (
+    <svg viewBox="0 0 24 24" className="w-full h-full" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="9" className="stroke-blue-500 dark:stroke-blue-400" />
+        <path d="M3 12h18" className="stroke-blue-500 dark:stroke-blue-400" />
+        <path d="M12 3a14.5 14.5 0 010 18" className="stroke-blue-500 dark:stroke-blue-400" />
+        <path d="M12 3a14.5 14.5 0 000 18" className="stroke-blue-500 dark:stroke-blue-400" />
+    </svg>
+);
+
 const skills = [
-    { name: "Python", icon: PythonIcon },
     { name: "Flutter", icon: FlutterIcon },
     { name: "Dart", icon: DartIcon },
+    { name: "React", icon: ReactIcon },
+    { name: "Web", icon: WebIcon },
+    { name: "Python", icon: PythonIcon },
     { name: "Firebase", icon: FirebaseIcon },
     { name: "Cloudflare", icon: CloudflareIcon },
     { name: "Google Cloud", icon: GoogleCloudIcon },
@@ -203,9 +225,9 @@ export default function SkillsSection() {
                         </span>
                     </h2>
                     <p className="text-slate-600 dark:text-gray-400 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
-                        With deep expertise across the mobile development ecosystem, I transform complex ideas
-                        into elegant, scalable applications. From crafting pixel-perfect Flutter interfaces to
-                        architecting robust cloud backends; I bring ideas to life.
+                        From pixel-perfect Flutter mobile apps and React/Next.js web interfaces to Python
+                        backends and AI-integrated experiences on Cloudflare&apos;s edge, I design and
+                        ship full-stack products end to end.
                     </p>
                 </div>
 

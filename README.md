@@ -35,6 +35,39 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
+## Environment variables
+
+Copy the required values into `.env.local` (or your hosting provider's env configuration).
+All SEO/GEO features degrade gracefully when a variable is unset, so nothing is strictly required,
+but the following are strongly recommended to complete ownership verification.
+
+| Variable | Purpose | Where to get it |
+|----------|---------|-----------------|
+| `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Injects the `google-site-verification` meta tag on `<head>` so Google Search Console can confirm ownership. | https://search.google.com/search-console → Add property (Meta tag method) |
+| `NEXT_PUBLIC_BING_SITE_VERIFICATION` | Injects the `msvalidate.01` meta tag for Bing Webmaster Tools. | https://www.bing.com/webmasters → Add site (Meta tag method) |
+| `NEXT_PUBLIC_YANDEX_SITE_VERIFICATION` | Optional — `yandex-verification` meta tag. | https://webmaster.yandex.com |
+
+Example `.env.local`:
+
+```bash
+NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=abc123_your_google_token
+NEXT_PUBLIC_BING_SITE_VERIFICATION=1A2B3C4D5E6F_your_bing_token
+```
+
+After adding tokens, redeploy so Next.js bakes them into the rendered HTML head.
+
+## SEO / GEO surfaces
+
+This site exposes machine-readable discovery files:
+
+- `/sitemap.xml` — auto-generated from `app/sitemap.ts`
+- `/robots.txt` — auto-generated from `app/robots.ts` (allowlists GPTBot, ClaudeBot, Google-Extended, PerplexityBot, Applebot-Extended, CCBot, and others)
+- `/llms.txt` — concise manifest for AI assistants (llmstxt.org spec)
+- `/llms-full.txt` — expanded bio + case studies for deeper AI context
+- Root `<script type="application/ld+json">` — `@graph` with `Person` / `Organization` / `WebSite` / `ProfilePage` entities
+- `/about` — human + LLM-optimized FAQ page with `FAQPage` + `ProfilePage` + `BreadcrumbList` JSON-LD
+- Per-project JSON-LD (`SoftwareApplication` + `BreadcrumbList`) on `/projects/*` pages
+
 ## Maintenance
 
 ### Updating Hawk Buddy APK
