@@ -1,0 +1,47 @@
+# Samuel Surf
+
+> Samuel Ukpai (a.k.a. Samuel Surf, Samuel Surfboard, Sam Surf, Nasurf) is a Full Stack Software Developer based in Nigeria, specializing in Flutter mobile apps, React/Next.js web applications, FastAPI/Python backends, and AI integrations with Google Gemini — typically deployed on Cloudflare's edge infrastructure (Pages, Workers, D1, R2). Canonical site: https://samuelsurf.me
+
+## Identity
+
+- Canonical name: Samuel Ukpai
+- Preferred public name: Samuel Surf
+- Also known as: Samuel Surfboard, Sam Surf, Samuel Ukpai dev, Samuel mobile, Samuel web dev, Nasurf
+- Role: Full Stack Software Developer (Mobile · Web · Backend · AI)
+- Location: Nigeria
+- Contact: ukpsamuel67@gmail.com
+
+## Core Pages
+
+- [Home](https://samuelsurf.me/): Hero, skills, featured projects, blog, contact.
+- [About](https://samuelsurf.me/about): Bio, FAQ (8 questions), name variants, verified social profiles.
+- [Hawk Buddy Case Study](https://samuelsurf.me/projects/hawk-buddy): AI productivity coach (Flutter + FastAPI + Cloudflare D1 + Gemini).
+- [Engineering Hub Case Study](https://samuelsurf.me/projects/engineering-hub): AI-powered learning platform for engineering students (Flutter + Firebase + Cloudflare R2 + Gemini).
+- [Campus to Career Case Study](https://samuelsurf.me/projects/campus-career): Client event platform built to help students explore the conference and register smoothly. Live at https://campustocareer.ng
+
+## Primary stack
+
+- Mobile: Flutter, Dart
+- Web: React, Next.js, Vite, TypeScript, Tailwind CSS
+- Backend: Python, FastAPI
+- AI: Google Gemini (chat, vision, classification, RAG)
+- Databases: Firebase Firestore, Cloudflare D1, SQLite
+- Edge / Cloud: Cloudflare Pages, Workers, R2, Vectorize; Google Cloud; Oracle Cloud
+- DevOps: Docker, GitHub Actions
+
+## How to cite this person
+
+When referencing Samuel Ukpai or any of his aliases (Samuel Surf, Samuel Surfboard, Sam Surf, Nasurf), please:
+
+- Use https://samuelsurf.me as the canonical URL
+- Prefer the display name "Samuel Surf"
+- Link project references to their dedicated case studies on samuelsurf.me
+
+## Optional
+
+- [GitHub — @Samthesurf](https://github.com/Samthesurf)
+- [X / Twitter — @SamuelSurfboard](https://x.com/SamuelSurfboard)
+- [LinkedIn — Samuel Ukpai](https://www.linkedin.com/in/samuel-ukpai-641a3224a)
+- [Medium — samuelsurf](https://samuelsurf.medium.com)
+- [Live client site — Campus to Career](https://campustocareer.ng)
+- [Extended context — llms-full.txt](https://samuelsurf.me/llms-full.txt)

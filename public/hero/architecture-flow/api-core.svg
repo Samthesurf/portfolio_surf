@@ -1,0 +1,136 @@
+<svg width="320" height="220" viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Subtle glow behind the central hub -->
+    <radialGradient id="hubGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Node outer ring gradient -->
+    <linearGradient id="nodeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#94A3B8" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#1E293B" stop-opacity="0.8"/>
+    </linearGradient>
+
+    <!-- Outer Hexagon Bezel -->
+    <linearGradient id="hexBezel" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.3"/>
+      <stop offset="30%" stop-color="#1E293B" stop-opacity="0.8"/>
+      <stop offset="70%" stop-color="#1E293B" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#111827" stop-opacity="0.6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Infrastructure Ring -->
+  <circle cx="160" cy="110" r="80" fill="none" stroke="#1E293B" stroke-width="1" stroke-dasharray="4 8" opacity="0.4"/>
+  
+  <!-- Central Hub Ambient Glow -->
+  <circle cx="160" cy="110" r="65" fill="url(#hubGlow)"/>
+
+  <!-- ==================== ROUTING NETWORK (BASE) ==================== -->
+  <g stroke="#1E293B" stroke-width="2" fill="none">
+    <!-- Top-Left Flow -->
+    <path d="M 50 40 L 80 40 Q 90 40 90 50 L 90 82 Q 90 92 100 92 L 117 92"/>
+    <!-- Bottom-Left Flow -->
+    <path d="M 50 180 L 80 180 Q 90 180 90 170 L 90 138 Q 90 128 100 128 L 117 128"/>
+    <!-- Top-Right Flow -->
+    <path d="M 270 40 L 240 40 Q 230 40 230 50 L 230 82 Q 230 92 220 92 L 203 92"/>
+    <!-- Bottom-Right Flow -->
+    <path d="M 270 180 L 240 180 Q 230 180 230 170 L 230 138 Q 230 128 220 128 L 203 128"/>
+  </g>
+
+  <!-- ==================== ROUTING NETWORK (ACTIVE DATA) ==================== -->
+  <g fill="none" stroke-linecap="round">
+    <!-- Top-Left Active Data -->
+    <path d="M 50 40 L 80 40 Q 90 40 90 50 L 90 64" stroke="#60A5FA" stroke-width="2"/>
+    <circle cx="90" cy="64" r="2" fill="#E2E8F0"/>
+
+    <!-- Bottom-Left Active Data -->
+    <path d="M 104 128 L 117 128" stroke="#3B82F6" stroke-width="2"/>
+    <circle cx="104" cy="128" r="2" fill="#E2E8F0"/>
+
+    <!-- Top-Right Active Data -->
+    <path d="M 230 68 L 230 82 Q 230 92 220 92 L 212 92" stroke="#60A5FA" stroke-width="2"/>
+    <circle cx="230" cy="68" r="2" fill="#E2E8F0"/>
+
+    <!-- Bottom-Right Active Data -->
+    <path d="M 270 180 L 240 180 Q 230 180 230 170 L 230 156" stroke="#3B82F6" stroke-width="2"/>
+    <circle cx="230" cy="156" r="2" fill="#E2E8F0"/>
+  </g>
+
+  <!-- ==================== 4 CONNECTION NODES ==================== -->
+  <!-- Top-Left Node (Active Incoming) -->
+  <circle cx="50" cy="40" r="18" fill="none" stroke="#3B82F6" stroke-width="1" opacity="0.3"/>
+  <circle cx="50" cy="40" r="14" fill="#0F172A" stroke="url(#nodeGrad)" stroke-width="1.5"/>
+  <circle cx="50" cy="40" r="8" fill="#111827" stroke="#1E293B"/>
+  <circle cx="50" cy="40" r="3" fill="#60A5FA"/>
+
+  <!-- Bottom-Left Node -->
+  <circle cx="50" cy="180" r="14" fill="#0F172A" stroke="url(#nodeGrad)" stroke-width="1.5"/>
+  <circle cx="50" cy="180" r="8" fill="#111827" stroke="#1E293B"/>
+  <circle cx="50" cy="180" r="3" fill="#E2E8F0"/>
+
+  <!-- Top-Right Node -->
+  <circle cx="270" cy="40" r="14" fill="#0F172A" stroke="url(#nodeGrad)" stroke-width="1.5"/>
+  <circle cx="270" cy="40" r="8" fill="#111827" stroke="#1E293B"/>
+  <circle cx="270" cy="40" r="3" fill="#3B82F6"/>
+
+  <!-- Bottom-Right Node -->
+  <circle cx="270" cy="180" r="14" fill="#0F172A" stroke="url(#nodeGrad)" stroke-width="1.5"/>
+  <circle cx="270" cy="180" r="8" fill="#111827" stroke="#1E293B"/>
+  <circle cx="270" cy="180" r="3" fill="#94A3B8"/>
+
+  <!-- ==================== CENTRAL HUB (GEOMETRY) ==================== -->
+  <!-- Structural Brackets -->
+  <path d="M 150 52 L 160 46 L 170 52" fill="none" stroke="#60A5FA" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.8"/>
+  <path d="M 150 168 L 160 174 L 170 168" fill="none" stroke="#94A3B8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
+
+  <!-- Outer Hexagon Base -->
+  <polygon points="160,60 203,85 203,135 160,160 117,135 117,85" fill="#111827" stroke="url(#hexBezel)" stroke-width="6" stroke-linejoin="round"/>
+  
+  <!-- Inner Hexagon (Dark Inset Core) -->
+  <polygon points="160,68 196,89 196,131 160,152 124,131 124,89" fill="#0F172A" stroke="#1E293B" stroke-width="2" stroke-linejoin="round"/>
+
+  <!-- Core Internal Routing Lines (Bridging edge to blocks) -->
+  <g stroke="#1E293B" stroke-width="2" stroke-linecap="round">
+    <line x1="124" y1="92" x2="132" y2="92"/>
+    <line x1="124" y1="128" x2="132" y2="128"/>
+    <line x1="196" y1="92" x2="188" y2="92"/>
+    <line x1="196" y1="128" x2="188" y2="128"/>
+  </g>
+
+  <!-- Central Server Spine Base -->
+  <rect x="158" y="80" width="4" height="60" rx="2" fill="#1E293B" opacity="0.3"/>
+
+  <!-- ==================== LAYERED SERVER BLOCKS ==================== -->
+  <!-- Block 1 (Top) -->
+  <g transform="translate(0, 0)">
+    <rect x="132" y="86" width="56" height="12" rx="3" fill="#111827" stroke="#1E293B" stroke-width="1"/>
+    <!-- Status Dot -->
+    <rect x="136" y="90" width="4" height="4" rx="2" fill="#94A3B8"/>
+    <!-- Data Slices -->
+    <rect x="144" y="91" width="16" height="2" rx="1" fill="#1E293B"/>
+    <rect x="164" y="91" width="8" height="2" rx="1" fill="#1E293B"/>
+  </g>
+
+  <!-- Block 2 (Middle - Active Processor) -->
+  <g transform="translate(0, 0)">
+    <!-- Slight inset shadow/glow effect by layering -->
+    <rect x="130" y="102" width="60" height="16" rx="4" fill="#0F172A" stroke="#3B82F6" stroke-width="1" stroke-opacity="0.8"/>
+    <!-- Status Dot (Glowing) -->
+    <rect x="136" y="108" width="4" height="4" rx="2" fill="#60A5FA"/>
+    <!-- Data Slices (Active Data processing) -->
+    <rect x="144" y="108" width="24" height="4" rx="2" fill="#E2E8F0"/>
+    <rect x="172" y="108" width="12" height="4" rx="2" fill="#94A3B8" opacity="0.6"/>
+  </g>
+
+  <!-- Block 3 (Bottom) -->
+  <g transform="translate(0, 0)">
+    <rect x="132" y="122" width="56" height="12" rx="3" fill="#111827" stroke="#1E293B" stroke-width="1"/>
+    <!-- Status Dot -->
+    <rect x="136" y="126" width="4" height="4" rx="2" fill="#94A3B8"/>
+    <!-- Data Slices -->
+    <rect x="144" y="127" width="28" height="2" rx="1" fill="#1E293B"/>
+  </g>
+
+</svg>

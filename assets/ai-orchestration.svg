@@ -1,0 +1,127 @@
+<svg width="320" height="220" viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Central AI Hub Ambient Glow -->
+    <radialGradient id="hubGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Glass card background for primary elements -->
+    <linearGradient id="glassCard" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#111827" stop-opacity="0.7"/>
+    </linearGradient>
+
+    <!-- Subtle metallic border for central chip -->
+    <linearGradient id="chipBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#94A3B8" stop-opacity="0.4"/>
+      <stop offset="30%" stop-color="#1E293B" stop-opacity="0.8"/>
+      <stop offset="70%" stop-color="#1E293B" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0.3"/>
+    </linearGradient>
+
+    <!-- Gradient for the AI Spark -->
+    <linearGradient id="sparkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60A5FA"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ==================== BACKGROUND DECORATION ==================== -->
+  <!-- Tech / Canvas framing rings (Transparent background compliant) -->
+  <circle cx="160" cy="110" r="90" fill="none" stroke="#1E293B" stroke-width="1" stroke-dasharray="4 8" opacity="0.4"/>
+  <circle cx="160" cy="110" r="120" fill="none" stroke="#1E293B" stroke-width="1" stroke-dasharray="2 12" opacity="0.2"/>
+
+  <!-- ==================== ROUTING CONNECTIONS ==================== -->
+  <g fill="none" stroke="#1E293B" stroke-width="2">
+    <!-- Left to Center -->
+    <path d="M 78 110 L 120 110" />
+    
+    <!-- Center to Top Right (Branching) -->
+    <path d="M 200 110 L 214 110 A 6 6 0 0 0 220 104 L 220 81 A 6 6 0 0 1 226 75 L 242 75" />
+    
+    <!-- Center to Bottom Right (Branching) -->
+    <path d="M 200 110 L 214 110 A 6 6 0 0 1 220 116 L 220 139 A 6 6 0 0 0 226 145 L 242 145" />
+  </g>
+
+  <!-- Active Data Pulses / Flow Highlights -->
+  <g fill="none" stroke-linecap="round">
+    <!-- Left Input Active Flow -->
+    <line x1="86" y1="110" x2="100" y2="110" stroke="#60A5FA" stroke-width="2"/>
+    <circle cx="100" cy="110" r="2" fill="#E2E8F0"/>
+
+    <!-- Top Right Active Flow -->
+    <line x1="226" y1="75" x2="236" y2="75" stroke="#3B82F6" stroke-width="2"/>
+    <circle cx="236" cy="75" r="2" fill="#E2E8F0"/>
+
+    <!-- Bottom Right Active Flow -->
+    <line x1="220" y1="122" x2="220" y2="132" stroke="#94A3B8" stroke-width="2"/>
+    <circle cx="220" cy="132" r="2" fill="#E2E8F0"/>
+  </g>
+
+  <!-- Connection Nodes / Ports -->
+  <circle cx="78" cy="110" r="3" fill="#111827" stroke="#60A5FA" stroke-width="1.5"/>
+  <circle cx="120" cy="110" r="3" fill="#111827" stroke="#3B82F6" stroke-width="1.5"/>
+  <circle cx="200" cy="110" r="3" fill="#111827" stroke="#3B82F6" stroke-width="1.5"/>
+  <circle cx="242" cy="75" r="3" fill="#111827" stroke="#60A5FA" stroke-width="1.5"/>
+  <circle cx="242" cy="145" r="3" fill="#111827" stroke="#94A3B8" stroke-width="1.5"/>
+
+  <!-- ==================== LEFT NODE (INPUT/CHAT) ==================== -->
+  <rect x="30" y="85" width="48" height="50" rx="8" fill="#111827" stroke="#1E293B" stroke-width="1"/>
+  
+  <!-- Subtly glowing top indicator -->
+  <rect x="50" y="85" width="8" height="2" rx="1" fill="#60A5FA"/>
+
+  <!-- Geometric Chat/Prompt Bubble Icon -->
+  <path d="M 38 102 C 38 99.79 39.79 98 42 98 L 66 98 C 68.21 98 70 99.79 70 102 L 70 114 C 70 116.21 68.21 118 66 118 L 58 118 L 54 123 L 50 118 L 42 118 C 39.79 118 38 116.21 38 114 Z" fill="#0F172A" stroke="#3B82F6" stroke-width="1" stroke-linejoin="round"/>
+  
+  <!-- Data Lines inside chat bubble -->
+  <rect x="44" y="104" width="18" height="3" rx="1.5" fill="#E2E8F0"/>
+  <rect x="44" y="111" width="10" height="3" rx="1.5" fill="#94A3B8" opacity="0.6"/>
+
+  <!-- ==================== RIGHT NODE 1 (PROCESS/CODE) ==================== -->
+  <rect x="242" y="55" width="48" height="40" rx="6" fill="#111827" stroke="#1E293B" stroke-width="1"/>
+  
+  <!-- Header Bar -->
+  <circle cx="250" cy="63" r="2" fill="#3B82F6"/>
+  <rect x="256" y="62" width="24" height="2" rx="1" fill="#1E293B"/>
+  
+  <!-- Logic Blocks -->
+  <rect x="250" y="69" width="32" height="4" rx="2" fill="#E2E8F0" opacity="0.9"/>
+  <rect x="250" y="77" width="20" height="4" rx="2" fill="#60A5FA"/>
+  <rect x="250" y="85" width="12" height="4" rx="2" fill="#94A3B8" opacity="0.5"/>
+
+  <!-- ==================== RIGHT NODE 2 (DATA/OUTPUT) ==================== -->
+  <rect x="242" y="125" width="48" height="40" rx="6" fill="#111827" stroke="#1E293B" stroke-width="1"/>
+  
+  <!-- File/Media Placeholder -->
+  <rect x="248" y="131" width="14" height="14" rx="4" fill="#0F172A" stroke="#1E293B" stroke-width="1"/>
+  <circle cx="255" cy="138" r="3" fill="#60A5FA"/>
+  
+  <!-- Detail Bars -->
+  <rect x="266" y="133" width="16" height="4" rx="2" fill="#E2E8F0" opacity="0.9"/>
+  <rect x="266" y="141" width="8" height="4" rx="2" fill="#94A3B8" opacity="0.5"/>
+  <rect x="248" y="151" width="34" height="4" rx="2" fill="#1E293B"/>
+
+  <!-- ==================== CENTRAL AI HUB ==================== -->
+  <circle cx="160" cy="110" r="50" fill="url(#hubGlow)"/>
+
+  <!-- Main Chip Outer Shell -->
+  <rect x="120" y="70" width="80" height="80" rx="16" fill="url(#glassCard)" stroke="url(#chipBorder)" stroke-width="1.5"/>
+  
+  <!-- Chip Inner Geometry (Inset core) -->
+  <rect x="128" y="78" width="64" height="64" rx="12" fill="#0F172A" stroke="#1E293B" stroke-width="1"/>
+
+  <!-- Corner nodes for hardware aesthetic -->
+  <circle cx="133" cy="83" r="1.5" fill="#1E293B"/>
+  <circle cx="187" cy="83" r="1.5" fill="#1E293B"/>
+  <circle cx="133" cy="137" r="1.5" fill="#1E293B"/>
+  <circle cx="187" cy="137" r="1.5" fill="#1E293B"/>
+
+  <!-- Primary AI Spark (Star) Icon -->
+  <path d="M 160 94 C 160 104 166 110 176 110 C 166 110 160 116 160 126 C 160 116 154 110 144 110 C 154 110 160 104 160 94 Z" fill="url(#sparkGrad)"/>
+  
+  <!-- Secondary Spark (Clustered intelligence aesthetic) -->
+  <path d="M 174 90 C 174 94 177 96 180 96 C 177 96 174 98 174 102 C 174 98 171 96 168 96 C 171 96 174 94 174 90 Z" fill="#E2E8F0"/>
+
+</svg>

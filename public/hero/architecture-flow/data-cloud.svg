@@ -1,0 +1,140 @@
+<svg width="320" height="220" viewBox="0 0 320 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background grid for the cloud -->
+    <pattern id="cloudGrid" width="16" height="16" patternUnits="userSpaceOnUse">
+      <path d="M 16 0 L 0 0 0 16" fill="none" stroke="#1E293B" stroke-width="1" opacity="0.4"/>
+    </pattern>
+
+    <!-- Cloud base gradient -->
+    <linearGradient id="cloudGlass" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#0F172A" stop-opacity="0.8"/>
+    </linearGradient>
+
+    <!-- Cloud edge highlight -->
+    <linearGradient id="cloudStroke" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#1E293B" stop-opacity="0.8"/>
+    </linearGradient>
+
+    <!-- Card metallic border -->
+    <linearGradient id="cardStroke" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#94A3B8" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#1E293B" stop-opacity="0.8"/>
+    </linearGradient>
+
+    <!-- Active database layer glow -->
+    <linearGradient id="dbActive" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="50%" stop-color="#3B82F6" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+
+    <!-- Subtle ambient glow -->
+    <radialGradient id="ambientGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#3B82F6" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Cloud Path Definition -->
+    <path id="cloudPath" transform="translate(-16, -11) scale(1.1)" 
+          d="M 190 160 L 120 160 
+             C 98 160 80 142 80 120 
+             C 80 100.5 94 84.5 112.5 81 
+             C 121 63 139.5 50 160 50 
+             C 186.5 50 208 70 210.5 95.5 
+             C 227 98 240 112.5 240 130 
+             C 240 146.5 226.5 160 210 160 Z" />
+
+    <clipPath id="cloudClip">
+      <use href="#cloudPath" />
+    </clipPath>
+  </defs>
+
+  <!-- Ambient Background Glow -->
+  <circle cx="160" cy="110" r="90" fill="url(#ambientGlow)"/>
+
+  <!-- ==================== CLOUD INFRASTRUCTURE BASE ==================== -->
+  <g>
+    <!-- Solid glassy base -->
+    <use href="#cloudPath" fill="url(#cloudGlass)" />
+    <!-- Tech grid clipped to cloud shape -->
+    <rect x="0" y="0" width="320" height="220" fill="url(#cloudGrid)" clip-path="url(#cloudClip)" />
+    <!-- Outer stroke -->
+    <use href="#cloudPath" fill="none" stroke="url(#cloudStroke)" stroke-width="1.5" />
+    
+    <!-- Floating geometric nodes behind main objects -->
+    <circle cx="95" cy="65" r="2.5" fill="#60A5FA" opacity="0.8" />
+    <path d="M 95 65 L 115 85" stroke="#60A5FA" stroke-width="0.5" opacity="0.4" />
+    
+    <circle cx="230" cy="65" r="3" fill="#3B82F6" opacity="0.6" />
+    <circle cx="250" cy="140" r="2" fill="#E2E8F0" opacity="0.4" />
+    <path d="M 230 65 L 210 90" stroke="#3B82F6" stroke-width="0.5" opacity="0.3" />
+  </g>
+
+  <!-- ==================== LEFT: DATA/FILE CARD ==================== -->
+  <g transform="translate(0, 0)">
+    <!-- Card Body -->
+    <rect x="88" y="90" width="56" height="64" rx="6" fill="#0F172A" stroke="url(#cardStroke)" stroke-width="1.5" />
+    
+    <!-- Card Header -->
+    <path d="M 88 96 C 88 92.6863 90.6863 90 94 90 L 138 90 C 141.314 90 144 92.6863 144 96 L 144 106 L 88 106 L 88 96 Z" fill="#111827" />
+    <line x1="88" y1="106" x2="144" y2="106" stroke="#1E293B" stroke-width="1.5" />
+    
+    <!-- Header Window Dots -->
+    <circle cx="96" cy="98" r="2" fill="#3B82F6" />
+    <circle cx="104" cy="98" r="2" fill="#1E293B" />
+    <circle cx="112" cy="98" r="2" fill="#1E293B" />
+
+    <!-- Data Blocks -->
+    <rect x="96" y="116" width="16" height="4" rx="2" fill="#3B82F6" />
+    <rect x="116" y="116" width="20" height="4" rx="2" fill="#94A3B8" opacity="0.4" />
+    <rect x="96" y="126" width="36" height="4" rx="2" fill="#E2E8F0" opacity="0.9" />
+    <rect x="96" y="136" width="24" height="4" rx="2" fill="#94A3B8" opacity="0.4" />
+  </g>
+
+  <!-- ==================== CENTER: SYNC / CONNECTION ==================== -->
+  <!-- Main structural dashed connection -->
+  <line x1="144" y1="122" x2="174" y2="122" stroke="#1E293B" stroke-width="2" stroke-dasharray="3 3" />
+  
+  <!-- Upload Badge -->
+  <rect x="147" y="102" width="24" height="12" rx="6" fill="#1E293B" opacity="0.95" stroke="#3B82F6" stroke-width="0.5" />
+  <path d="M 155 108 L 163 108 M 160 105 L 163 108 L 160 111" stroke="#60A5FA" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+  
+  <!-- Download Badge -->
+  <rect x="147" y="130" width="24" height="12" rx="6" fill="#111827" stroke="#1E293B" stroke-width="0.5" />
+  <path d="M 163 136 L 155 136 M 158 133 L 155 136 L 158 139" stroke="#94A3B8" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- ==================== RIGHT: DATABASE STACK ==================== -->
+  <g transform="translate(0, 0)">
+    
+    <!-- BOTTOM LAYER -->
+    <path d="M 174 144 v 16 a 30 8 0 0 0 60 0 v -16 z" fill="#0F172A" stroke="#1E293B" stroke-width="1.5" stroke-linejoin="round" />
+    <ellipse cx="204" cy="144" rx="30" ry="8" fill="#111827" stroke="#1E293B" stroke-width="1.5" />
+    <path d="M 174 152 A 30 8 0 0 0 234 152" stroke="#1E293B" stroke-width="1" fill="none" />
+    <!-- Subtle left highlight & status dot -->
+    <path d="M 176 144 v 14" stroke="#E2E8F0" stroke-width="1" opacity="0.1" />
+    <rect x="222" y="148" width="4" height="2" rx="1" fill="#60A5FA" opacity="0.4" />
+
+    <!-- MIDDLE LAYER -->
+    <path d="M 174 124 v 16 a 30 8 0 0 0 60 0 v -16 z" fill="#0F172A" stroke="#1E293B" stroke-width="1.5" stroke-linejoin="round" />
+    <ellipse cx="204" cy="124" rx="30" ry="8" fill="#111827" stroke="#1E293B" stroke-width="1.5" />
+    <path d="M 174 132 A 30 8 0 0 0 234 132" stroke="#1E293B" stroke-width="1" fill="none" />
+    <!-- Subtle left highlight & status dot -->
+    <path d="M 176 124 v 14" stroke="#E2E8F0" stroke-width="1" opacity="0.1" />
+    <rect x="222" y="128" width="4" height="2" rx="1" fill="#60A5FA" opacity="0.4" />
+
+    <!-- TOP LAYER (ACTIVE) -->
+    <!-- Tech pulse ring behind top layer -->
+    <ellipse cx="204" cy="104" rx="36" ry="11" fill="none" stroke="#60A5FA" stroke-width="0.5" opacity="0.3" stroke-dasharray="2 4" />
+    
+    <path d="M 174 104 v 16 a 30 8 0 0 0 60 0 v -16 z" fill="#0F172A" stroke="#1E293B" stroke-width="1.5" stroke-linejoin="round" />
+    <ellipse cx="204" cy="104" rx="30" ry="8" fill="url(#dbActive)" stroke="#3B82F6" stroke-width="1.5" />
+    <path d="M 174 112 A 30 8 0 0 0 234 112" stroke="#1E293B" stroke-width="1" fill="none" />
+    <!-- Subtle left highlight & active status dot -->
+    <path d="M 176 104 v 14" stroke="#E2E8F0" stroke-width="1" opacity="0.15" />
+    <rect x="222" y="108" width="4" height="2" rx="1" fill="#3B82F6" />
+    <circle cx="204" cy="104" r="1.5" fill="#60A5FA" />
+  </g>
+
+</svg>
