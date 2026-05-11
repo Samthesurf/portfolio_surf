@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "pages:build": "npx @cloudflare/next-on-pages",
+    "deploy": "NPM_CONFIG_LEGACY_PEER_DEPS=true npm run pages:build && wrangler pages deploy .vercel/output/static --project-name=samuelsurf",
     "update-apk": "node scripts/update-apk.mjs"
   },
   "dependencies": {
