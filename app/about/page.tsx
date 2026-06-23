@@ -4,8 +4,6 @@ import Link from "next/link";
 import HeaderNav from "../../components/HeaderNav";
 import { SITE } from "../../lib/site-config";
 
-export const runtime = "edge";
-
 export const metadata: Metadata = {
     title: `About ${SITE.legalName} (${SITE.name}) | ${SITE.jobTitle}`,
     description: `Who is ${SITE.legalName}? He is also known as Samuel Surf, Samuel Surfboard, and Sam Surf. He builds Flutter mobile apps, React/Next.js web apps, Python backends, and AI integrations with Google Gemini.`,

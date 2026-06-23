@@ -1,4 +1,3 @@
-import Image from "next/image";
 import AnimatedText from "../components/AnimatedText";
 import HeaderNav from "../components/HeaderNav";
 import HeroVisual from "../components/HeroVisual";

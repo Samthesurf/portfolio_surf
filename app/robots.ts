@@ -1,8 +1,6 @@
 import { MetadataRoute } from 'next';
 import { SITE } from '../lib/site-config';
 
-export const runtime = 'edge';
-
 // Explicit allowlist for major AI crawlers so every engine's training + retrieval
 // bots have clear permission to index the site. The generic "*" rule stays as
 // the fallback for everything else.

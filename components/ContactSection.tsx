@@ -61,11 +61,11 @@ export default function ContactSection() {
                 <div className="text-center mb-16">
                     <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
                         <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-blue-300">
-                            Let's Work Together
+                            Let&apos;s Work Together
                         </span>
                     </h2>
                     <p className="text-slate-600 dark:text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">
-                        Have a project in mind or want to discuss opportunities? I'd love to hear from you.
+                        Have a project in mind or want to discuss opportunities? I&apos;d love to hear from you.
                     </p>
                 </div>
 
@@ -234,7 +234,7 @@ export default function ContactSection() {
                             {status === "success" && (
                                 <div className="p-4 rounded-xl bg-green-50 dark:bg-green-500/10 border border-green-200 dark:border-green-500/20">
                                     <p className="text-green-800 dark:text-green-300 text-sm font-medium">
-                                        ✓ Message sent successfully! I'll get back to you soon.
+                                        ✓ Message sent successfully! I&apos;ll get back to you soon.
                                     </p>
                                 </div>
                             )}

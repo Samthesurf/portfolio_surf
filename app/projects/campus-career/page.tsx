@@ -16,8 +16,6 @@ import campusMobileActivities from "../../../assets/campus-career/campus-mobile-
 import campusMobileHighlights from "../../../assets/campus-career/campus-mobile-highlights.png";
 import campusOg from "../../../assets/campus-career/campus-og.png";
 
-export const runtime = "edge";
-
 const GitHubIcon = () => (
   <svg viewBox="0 0 24 24" className="w-full h-full" fill="currentColor">
     <path

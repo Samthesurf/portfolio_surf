@@ -261,7 +261,7 @@ export default function SkillsSection() {
                         }`}
                 >
                     <p className="text-slate-500 dark:text-gray-500 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
-                        These aren't just logos on a page, they represent <span className="text-slate-900 dark:text-white font-medium">real projects</span>,
+                        These aren&apos;t just logos on a page, they represent <span className="text-slate-900 dark:text-white font-medium">real projects</span>,
                         <span className="text-slate-900 dark:text-white font-medium"> real challenges solved</span>, and
                         <span className="text-slate-900 dark:text-white font-medium"> real value delivered</span>.
                     </p>
@@ -270,7 +270,7 @@ export default function SkillsSection() {
                         href="#projects"
                         className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold text-lg transition-all hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(59,130,246,0.3)] hover:shadow-[0_0_25px_rgba(59,130,246,0.5)] group"
                     >
-                        <span>See What I've Built</span>
+                        <span>See What I&apos;ve Built</span>
                         <svg
                             className="w-5 h-5 group-hover:translate-y-1 transition-transform"
                             fill="none"

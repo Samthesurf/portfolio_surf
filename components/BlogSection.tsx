@@ -11,6 +11,23 @@ interface BlogPost {
     thumbnail?: string;
 }
 
+interface MediumFeedItem {
+    title?: string;
+    link?: string;
+    pubDate?: string;
+    description?: string;
+    content?: string;
+    thumbnail?: string;
+    enclosure?: {
+        link?: string;
+    };
+}
+
+interface MediumFeedResponse {
+    status?: string;
+    items?: MediumFeedItem[];
+}
+
 // Extract the first image URL from HTML content
 function extractFirstImage(htmlContent: string): string | null {
     const imgMatch = htmlContent.match(/<img[^>]+src=["']([^"']+)["']/i);
@@ -28,22 +45,24 @@ export default function BlogSection() {
                 const response = await fetch(
                     `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@samuelsurf`
                 );
-                const data = await response.json();
+                const data = (await response.json()) as MediumFeedResponse;
 
-                if (data.status === 'ok') {
+                if (data.status === 'ok' && Array.isArray(data.items)) {
                     // Get the first 3 posts
-                    const formattedPosts = data.items.slice(0, 3).map((item: any) => {
+                    const formattedPosts = data.items.slice(0, 3).map((item) => {
                         // Try to get thumbnail from feed, or extract from content HTML
                         const thumbnail = item.thumbnail ||
                             item.enclosure?.link ||
                             extractFirstImage(item.content || item.description || '');
 
                         return {
-                            title: item.title,
-                            link: item.link,
-                            pubDate: item.pubDate,
-                            description: item.description?.replace(/<[^>]*>/g, '').substring(0, 150) + '...' || '',
-                            thumbnail,
+                            title: item.title || 'Untitled post',
+                            link: item.link || '#',
+                            pubDate: item.pubDate || '',
+                            description: item.description
+                                ? `${item.description.replace(/<[^>]*>/g, '').substring(0, 150)}...`
+                                : '',
+                            thumbnail: thumbnail || undefined,
                         };
                     });
                     setPosts(formattedPosts);

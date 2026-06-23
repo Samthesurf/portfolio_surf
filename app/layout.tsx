@@ -4,8 +4,6 @@ import "./globals.css";
 import { ThemeProvider } from "../components/ThemeContext";
 import { SITE } from "../lib/site-config";
 
-export const runtime = "edge";
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],

@@ -1,8 +1,6 @@
 import { MetadataRoute } from 'next';
 import { SITE } from '../lib/site-config';
 
-export const runtime = 'edge';
-
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = SITE.url;
     const now = new Date();

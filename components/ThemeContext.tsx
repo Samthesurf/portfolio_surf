@@ -16,6 +16,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        /* eslint-disable react-hooks/set-state-in-effect -- ThemeProvider intentionally waits for client-only localStorage before rendering children. */
         setMounted(true);
         // Check for saved theme preference or system preference
         const savedTheme = localStorage.getItem('theme') as Theme | null;
@@ -24,6 +25,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
             setTheme('dark');
         }
+        /* eslint-enable react-hooks/set-state-in-effect */
     }, []);
 
     useEffect(() => {
@@ -40,7 +42,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }, [theme, mounted]);
 
     const toggleTheme = () => {
-        console.log('Toggling theme from', theme, 'to', theme === 'dark' ? 'light' : 'dark');
         setTheme(prev => prev === 'dark' ? 'light' : 'dark');
     };
 
