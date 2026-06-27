@@ -97,3 +97,25 @@ body {
 .bg-glow-gradient {
   background: radial-gradient(circle at 50% 50%, var(--glow-primary), transparent 70%);
 }
+
+.hero-visual-frame {
+  max-width: 144px;
+}
+
+@media (min-width: 640px) {
+  .hero-visual-frame {
+    max-width: 192px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-visual-frame {
+    max-width: 256px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-visual-frame {
+    max-width: 640px;
+  }
+}

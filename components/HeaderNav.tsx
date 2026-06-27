@@ -62,7 +62,7 @@ export default function HeaderNav() {
     >
       <div
         className={`
-          relative flex items-center justify-between px-6 py-3 rounded-full transition-all duration-300 h-14 overflow-visible
+          relative flex items-center justify-between gap-3 px-4 sm:px-6 py-3 rounded-full transition-all duration-300 h-14 overflow-visible
           ${scrolled
             ? 'bg-white/50 dark:bg-black/50 backdrop-blur-xl border border-black/10 dark:border-white/10 shadow-lg w-[90%] max-w-5xl'
             : 'bg-transparent w-full max-w-6xl'}
@@ -74,7 +74,7 @@ export default function HeaderNav() {
         )}
 
         {/* Logo Area + Mobile Controls (left side) */}
-        <div className="flex items-center gap-2">
+        <div className="flex w-full items-center justify-between gap-2 md:w-auto md:justify-start">
           {/* Logo */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -140,11 +140,11 @@ export default function HeaderNav() {
         </div>
 
         {/* Right Side: Theme Toggle (Desktop) + CTA Button */}
-        <div className="flex items-center gap-3">
+        <div className="hidden md:flex items-center gap-3">
           {/* Theme Toggle Button - Desktop Only */}
           <button
             onClick={toggleTheme}
-            className="hidden md:block p-2 rounded-full bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition-colors text-slate-700 dark:text-white"
+            className="p-2 rounded-full bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition-colors text-slate-700 dark:text-white"
             aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
           >
             {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
@@ -164,7 +164,7 @@ export default function HeaderNav() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-full right-4 mt-2 w-48 py-2 bg-white/90 dark:bg-black/90 backdrop-blur-xl border border-black/10 dark:border-white/10 rounded-2xl shadow-xl md:hidden"
+              className="absolute top-full right-0 mt-2 w-64 max-w-[calc(100vw-2rem)] py-2 bg-white/90 dark:bg-black/90 backdrop-blur-xl border border-black/10 dark:border-white/10 rounded-2xl shadow-xl md:hidden"
             >
               {navItems.map((item) => {
                 const href = 'absolute' in item && item.absolute ? item.hash : `${hrefPrefix}${item.hash}`;
@@ -179,6 +179,15 @@ export default function HeaderNav() {
                   </a>
                 );
               })}
+              <div className="mt-2 border-t border-black/10 px-3 pt-3 pb-1 dark:border-white/10">
+                <a
+                  href={`${hrefPrefix}#contact`}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex w-full items-center justify-center rounded-full bg-slate-900 px-5 py-3 text-sm font-bold text-white shadow-[0_0_10px_rgba(0,0,0,0.1)] transition-colors hover:bg-slate-700 dark:bg-white dark:text-black dark:shadow-[0_0_10px_rgba(255,255,255,0.2)] dark:hover:bg-gray-200"
+                >
+                  Contact Me
+                </a>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>

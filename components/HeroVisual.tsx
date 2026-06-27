@@ -31,6 +31,8 @@ const CONFIG = {
   INTRO_SPAWN_SPREAD: 118,
   INTRO_WOBBLE: 12,
   INTRO_GHOST_BOOST: 0.05,
+  LIGHT_GHOST_OPACITY: 0.008,
+  LIGHT_INTRO_GHOST_BOOST: 0.018,
   DRAW_SHADOWS: false,
   GHOST_OPACITY: 0.014,
 } as const;
@@ -404,8 +406,10 @@ export default function HeroVisual() {
       img: HTMLImageElement,
       bounds: SourceBounds,
     ): PortraitCanvas | null {
-      const targetMaxWidth = Math.max(280, width * CONFIG.PORTRAIT_WIDTH_RATIO);
-      const targetMaxHeight = Math.max(360, height * CONFIG.PORTRAIT_HEIGHT_RATIO);
+      const minPortraitWidth = width < 360 ? Math.max(180, width * 0.82) : 280;
+      const minPortraitHeight = height < 420 ? Math.max(220, height * 0.82) : 360;
+      const targetMaxWidth = Math.max(minPortraitWidth, width * CONFIG.PORTRAIT_WIDTH_RATIO);
+      const targetMaxHeight = Math.max(minPortraitHeight, height * CONFIG.PORTRAIT_HEIGHT_RATIO);
       const scale = Math.min(targetMaxWidth / bounds.width, targetMaxHeight / bounds.height);
       const targetWidth = Math.max(1, Math.round(bounds.width * scale));
       const targetHeight = Math.max(1, Math.round(bounds.height * scale));
@@ -718,8 +722,12 @@ export default function HeroVisual() {
         : 1;
 
       if (portrait && CONFIG.GHOST_OPACITY > 0) {
-        const ghostOpacity = isDarkMode() ? CONFIG.GHOST_OPACITY : 0.06;
-        const ghostIntroBoost = isDarkMode() ? CONFIG.INTRO_GHOST_BOOST : 0.075;
+        const ghostOpacity = isDarkMode()
+          ? CONFIG.GHOST_OPACITY
+          : CONFIG.LIGHT_GHOST_OPACITY;
+        const ghostIntroBoost = isDarkMode()
+          ? CONFIG.INTRO_GHOST_BOOST
+          : CONFIG.LIGHT_INTRO_GHOST_BOOST;
         drawingContext.save();
         drawingContext.globalAlpha =
           ghostOpacity + (1 - easeOutCubic(introProgress)) * ghostIntroBoost;
@@ -760,6 +768,14 @@ export default function HeroVisual() {
     function handleResize() {
       resize();
       initParticles();
+
+      if (!prefersReducedMotion) {
+        drawFrame(performance.now(), false);
+      }
+
+      if (isVisible && animationStarted && !frameId && !prefersReducedMotion) {
+        frameId = requestAnimationFrame(animate);
+      }
     }
 
     function lerpAngle(current: number, target: number, amount: number) {
@@ -807,6 +823,7 @@ export default function HeroVisual() {
 
     const handleImageReady = () => {
       if (imageReady) return;
+      if (!sourceImage.complete || sourceImage.naturalWidth === 0) return;
       imageReady = true;
       if (!isCancelled) boot();
     };
@@ -849,22 +866,20 @@ export default function HeroVisual() {
   }, [theme]);
 
   return (
-    <div
-      ref={containerRef}
-      className="relative h-full w-full min-h-[500px] flex items-center justify-center"
-      role="img"
-      aria-label="Interactive bird silhouette portrait of Samuel Ukpai"
-    >
+    <div className="relative flex h-full w-full min-h-[180px] items-center justify-center sm:min-h-[240px] md:min-h-[320px] lg:min-h-[500px]">
       <motion.div
+        ref={containerRef}
+        role="img"
+        aria-label="Interactive bird silhouette portrait of Samuel Ukpai"
         initial={{ opacity: 0, scale: 1.02 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.9, ease: "easeOut" }}
-        className="relative w-full max-w-[640px] aspect-[4/5] overflow-hidden rounded-3xl border border-slate-300/70 bg-[#e7ece8] shadow-2xl shadow-blue-500/10 dark:border-white/10 dark:bg-[#08090b] dark:shadow-blue-500/20"
+        className="hero-visual-frame relative aspect-[4/5] w-full overflow-hidden rounded-none border-0 bg-transparent shadow-none lg:rounded-3xl lg:border lg:border-slate-300/70 lg:bg-[#e7ece8] lg:shadow-2xl lg:shadow-blue-500/10 dark:lg:border-white/10 dark:lg:bg-[#08090b] dark:lg:shadow-blue-500/20"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(255,255,255,0.62),rgba(229,235,232,0.26)_45%,rgba(157,176,184,0.42)_100%)] dark:bg-[radial-gradient(circle_at_50%_42%,rgba(38,45,45,0.58),rgba(13,16,18,0.28)_45%,rgba(3,5,7,0.92)_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(59,130,246,0.12),transparent_34%),radial-gradient(circle_at_88%_82%,rgba(14,165,233,0.14),transparent_32%)] dark:bg-[radial-gradient(circle_at_18%_20%,rgba(59,130,246,0.18),transparent_34%),radial-gradient(circle_at_88%_82%,rgba(14,165,233,0.16),transparent_32%)]" />
+        <div className="absolute inset-0 hidden bg-[radial-gradient(circle_at_50%_42%,rgba(255,255,255,0.62),rgba(229,235,232,0.26)_45%,rgba(157,176,184,0.42)_100%)] lg:block dark:bg-[radial-gradient(circle_at_50%_42%,rgba(38,45,45,0.58),rgba(13,16,18,0.28)_45%,rgba(3,5,7,0.92)_100%)]" />
+        <div className="absolute inset-0 hidden bg-[radial-gradient(circle_at_18%_20%,rgba(59,130,246,0.12),transparent_34%),radial-gradient(circle_at_88%_82%,rgba(14,165,233,0.14),transparent_32%)] lg:block dark:bg-[radial-gradient(circle_at_18%_20%,rgba(59,130,246,0.18),transparent_34%),radial-gradient(circle_at_88%_82%,rgba(14,165,233,0.16),transparent_32%)]" />
         <canvas ref={canvasRef} className="relative z-10 block h-full w-full" aria-hidden="true" />
-        <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-inset ring-white/20 dark:ring-white/10" />
+        <div className="pointer-events-none absolute inset-0 hidden rounded-3xl ring-1 ring-inset ring-white/20 lg:block dark:ring-white/10" />
       </motion.div>
     </div>
   );
