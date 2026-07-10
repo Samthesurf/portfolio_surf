@@ -405,7 +405,7 @@ const projects: Project[] = [
       { name: "Gemini", icon: GeminiIcon },
     ],
     links: {
-      site: "https://engineering-hub-nine.vercel.app",
+      site: "https://engineeringhub.nasurf25.workers.dev",
       demo: "#", // Add link if available
       apkDownload: "#",
       playStore:

@@ -12,7 +12,8 @@
     "deploy": "opennextjs-cloudflare build && NODE_OPTIONS=--dns-result-order=ipv4first opennextjs-cloudflare deploy",
     "upload": "opennextjs-cloudflare build && NODE_OPTIONS=--dns-result-order=ipv4first opennextjs-cloudflare upload",
     "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts",
-    "update-apk": "node scripts/update-apk.mjs"
+    "update-apk": "node scripts/update-apk.mjs",
+    "postdeploy": "node scripts/submit-indexnow.mjs"
   },
   "dependencies": {
     "@opennextjs/cloudflare": "^1.19.11",

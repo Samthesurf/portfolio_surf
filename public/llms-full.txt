@@ -77,7 +77,7 @@ Unlike blockers that just limit usage, Hawk Buddy *understands* why you open cer
 
 - **One-liner:** AI-powered educational platform for engineering students.
 - **Case study URL:** https://samuelsurf.me/projects/engineering-hub
-- **Live web:** https://engineering-hub-nine.vercel.app/learn
+- **Live web:** https://engineeringhub.nasurf25.workers.dev
 - **Audience:** University engineering students (EEE, MCT, PET, etc.), levels 100–500.
 
 ### What it does

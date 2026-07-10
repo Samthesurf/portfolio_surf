@@ -20,7 +20,7 @@ const rubikWetPaint = Rubik_Wet_Paint({
   weight: "400",
 });
 
-const siteTitle = `${SITE.name} Portfolio | ${SITE.jobTitle}`;
+const siteTitle = `Samuel Surf (Ukpai) | Full Stack Developer & Flutter Engineer`;
 const siteDescription = SITE.shortDescription;
 
 export const metadata: Metadata = {

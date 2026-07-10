@@ -86,7 +86,7 @@ const engineeringHubJsonLd = {
         priceCurrency: "USD",
         availability: "https://schema.org/InStock",
       },
-      sameAs: "https://engineering-hub-nine.vercel.app",
+      sameAs: "https://engineeringhub.nasurf25.workers.dev",
       keywords: [
         "AI learning platform",
         "engineering education",
@@ -214,7 +214,7 @@ export default function EngineeringHubCaseStudyPage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <a
-                href="https://engineering-hub-nine.vercel.app"
+                href="https://engineeringhub.nasurf25.workers.dev"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-transparent bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold hover:bg-slate-800 dark:hover:bg-gray-100 transition-all active:scale-95"
