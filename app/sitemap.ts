@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { SITE } from '../lib/site-config';
 import { NAME_VARIANTS } from '../lib/name-variants';
+import { getAllBlogPosts } from '../lib/blog';
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = SITE.url;
@@ -17,6 +18,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             url: `${baseUrl}/about`,
             lastModified: now,
             changeFrequency: 'monthly',
+            priority: 0.9,
+        },
+        {
+            url: `${baseUrl}/blog`,
+            lastModified: now,
+            changeFrequency: 'weekly',
             priority: 0.9,
         },
         {
@@ -46,5 +53,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
     }));
 
-    return [...mainPages, ...namePages];
+    const blogPages: MetadataRoute.Sitemap = getAllBlogPosts().map((post) => ({
+        url: `${baseUrl}/blog/${post.slug}`,
+        lastModified: new Date(post.updatedAt ?? post.publishedAt),
+        changeFrequency: 'monthly' as const,
+        priority: 0.8,
+        images: post.coverImage ? [`${baseUrl}${post.coverImage}`] : undefined,
+    }));
+
+    return [...mainPages, ...blogPages, ...namePages];
 }

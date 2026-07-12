@@ -119,3 +119,341 @@ body {
     max-width: 640px;
   }
 }
+
+/* Blog reading experience */
+.blog-prose {
+  color: #334155;
+  font-size: clamp(1.05rem, 1rem + 0.2vw, 1.18rem);
+  line-height: 1.82;
+  overflow-wrap: anywhere;
+}
+
+.dark .blog-prose {
+  color: #cbd5e1;
+}
+
+.blog-prose > * + * {
+  margin-top: 1.5em;
+}
+
+.blog-prose h2,
+.blog-prose h3,
+.blog-prose h4 {
+  color: #0f172a;
+  font-weight: 750;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  scroll-margin-top: 7rem;
+}
+
+.dark .blog-prose h2,
+.dark .blog-prose h3,
+.dark .blog-prose h4 {
+  color: #ffffff;
+}
+
+.blog-prose h2 {
+  margin-top: 2.2em;
+  font-size: clamp(1.8rem, 1.5rem + 1vw, 2.5rem);
+}
+
+.blog-prose h3 {
+  margin-top: 1.9em;
+  font-size: clamp(1.4rem, 1.25rem + 0.55vw, 1.8rem);
+}
+
+.blog-prose h4 {
+  margin-top: 1.7em;
+  font-size: 1.25rem;
+}
+
+.blog-prose h2 a,
+.blog-prose h3 a,
+.blog-prose h4 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.blog-prose h2 a:hover::after,
+.blog-prose h3 a:hover::after {
+  margin-left: 0.35em;
+  color: #3b82f6;
+  content: "#";
+}
+
+.blog-prose p,
+.blog-prose ul,
+.blog-prose ol {
+  max-width: 70ch;
+}
+
+.blog-prose ul,
+.blog-prose ol {
+  padding-left: 1.4em;
+}
+
+.blog-prose ul {
+  list-style: disc;
+}
+
+.blog-prose ol {
+  list-style: decimal;
+}
+
+.blog-prose li {
+  padding-left: 0.35em;
+}
+
+.blog-prose li + li {
+  margin-top: 0.55em;
+}
+
+.blog-prose a {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgb(37 99 235 / 35%);
+  text-decoration-thickness: 0.1em;
+  text-underline-offset: 0.2em;
+}
+
+.blog-prose a:hover {
+  text-decoration-color: currentColor;
+}
+
+.dark .blog-prose a {
+  color: #60a5fa;
+}
+
+.blog-prose blockquote {
+  border-left: 4px solid #3b82f6;
+  padding: 0.35em 0 0.35em 1.4em;
+  color: #475569;
+  font-size: 1.12em;
+  font-style: italic;
+}
+
+.dark .blog-prose blockquote {
+  color: #cbd5e1;
+}
+
+.blog-prose hr {
+  margin-block: 3em;
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+}
+
+.dark .blog-prose hr {
+  border-color: rgb(255 255 255 / 10%);
+}
+
+.blog-prose :not(pre) > code {
+  border: 1px solid #dbeafe;
+  border-radius: 0.4em;
+  background: #eff6ff;
+  padding: 0.12em 0.35em;
+  color: #1d4ed8;
+  font-size: 0.88em;
+}
+
+.dark .blog-prose :not(pre) > code {
+  border-color: rgb(96 165 250 / 20%);
+  background: rgb(59 130 246 / 12%);
+  color: #93c5fd;
+}
+
+.blog-prose [data-rehype-pretty-code-figure] {
+  margin-block: 2em;
+}
+
+.blog-prose [data-rehype-pretty-code-figure] pre {
+  overflow-x: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+  background: #f8fafc;
+  padding: 1.25rem 0;
+  font-size: 0.88rem;
+  line-height: 1.7;
+}
+
+.dark .blog-prose [data-rehype-pretty-code-figure] pre {
+  border-color: rgb(255 255 255 / 10%);
+  background: #0d1117;
+}
+
+.blog-prose [data-rehype-pretty-code-figure] code {
+  display: grid;
+  min-width: 100%;
+}
+
+.blog-prose [data-rehype-pretty-code-figure] [data-line] {
+  padding-inline: 1.25rem;
+}
+
+.blog-prose [data-rehype-pretty-code-title] {
+  display: inline-block;
+  margin: 0 0 -1px 1rem;
+  border: 1px solid #e2e8f0;
+  border-bottom: 0;
+  border-radius: 0.6rem 0.6rem 0 0;
+  background: #f8fafc;
+  padding: 0.35rem 0.8rem;
+  color: #475569;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+}
+
+.dark .blog-prose [data-rehype-pretty-code-title] {
+  border-color: rgb(255 255 255 / 10%);
+  background: #0d1117;
+  color: #94a3b8;
+}
+
+[data-theme*=" "] {
+  color: var(--shiki-light);
+}
+
+.dark [data-theme*=" "] {
+  color: var(--shiki-dark);
+}
+
+.blog-figure {
+  margin-block: 2.5rem;
+}
+
+.blog-figure figcaption {
+  margin-top: 0.85rem;
+  color: #64748b;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.dark .blog-figure figcaption {
+  color: #94a3b8;
+}
+
+@media (min-width: 1024px) {
+  .blog-figure-wide {
+    width: min(1000px, calc(100vw - 4rem));
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.blog-callout {
+  margin-block: 2em;
+  border: 1px solid #bfdbfe;
+  border-radius: 1rem;
+  background: #eff6ff;
+  padding: 1.2rem 1.35rem;
+  color: #1e3a8a;
+}
+
+.blog-callout-tip {
+  border-color: #a7f3d0;
+  background: #ecfdf5;
+  color: #065f46;
+}
+
+.blog-callout-warning {
+  border-color: #fde68a;
+  background: #fffbeb;
+  color: #92400e;
+}
+
+.dark .blog-callout {
+  border-color: rgb(96 165 250 / 25%);
+  background: rgb(59 130 246 / 10%);
+  color: #bfdbfe;
+}
+
+.dark .blog-callout-tip {
+  border-color: rgb(52 211 153 / 25%);
+  background: rgb(16 185 129 / 10%);
+  color: #a7f3d0;
+}
+
+.dark .blog-callout-warning {
+  border-color: rgb(251 191 36 / 25%);
+  background: rgb(245 158 11 / 10%);
+  color: #fde68a;
+}
+
+.blog-callout .blog-callout-title {
+  margin: 0 0 0.35rem;
+  color: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.blog-callout p {
+  margin: 0;
+}
+
+.blog-table-wrap {
+  margin-block: 2em;
+  overflow-x: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: 1rem;
+}
+
+.dark .blog-table-wrap {
+  border-color: rgb(255 255 255 / 10%);
+}
+
+.blog-table-wrap table {
+  width: 100%;
+  min-width: 36rem;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.blog-table-wrap th,
+.blog-table-wrap td {
+  border-bottom: 1px solid #e2e8f0;
+  padding: 0.8rem 1rem;
+  text-align: left;
+}
+
+.dark .blog-table-wrap th,
+.dark .blog-table-wrap td {
+  border-color: rgb(255 255 255 / 10%);
+}
+
+.blog-table-wrap th {
+  background: #f8fafc;
+  color: #0f172a;
+  font-weight: 700;
+}
+
+.dark .blog-table-wrap th {
+  background: rgb(255 255 255 / 5%);
+  color: #ffffff;
+}
+
+.blog-video {
+  position: relative;
+  margin-block: 2.5rem;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.blog-video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blog-prose *,
+  .blog-prose *::before,
+  .blog-prose *::after {
+    scroll-behavior: auto !important;
+  }
+}

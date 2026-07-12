@@ -13,6 +13,9 @@
 # testing
 /coverage
 
+# local Hermes plans and session artifacts
+/.hermes/
+
 # next.js
 /.next/
 /out/

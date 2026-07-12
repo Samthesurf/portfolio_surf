@@ -10,7 +10,7 @@ const navItems = [
   { name: 'About', hash: '/about', absolute: true as const },
   { name: 'Technologies', hash: '#skills' },
   { name: 'Projects', hash: '#projects' },
-  { name: 'Blog', hash: '#blog' },
+  { name: 'Blog', hash: '/blog', absolute: true as const },
 ];
 
 // Sun icon for light mode
@@ -105,6 +105,8 @@ export default function HeaderNav() {
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 rounded-full bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 transition-colors text-slate-700 dark:text-white"
               aria-label="Toggle menu"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation-menu"
             >
               <svg
                 className="w-5 h-5"
@@ -160,6 +162,7 @@ export default function HeaderNav() {
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
+              id="mobile-navigation-menu"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}

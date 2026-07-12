@@ -232,7 +232,7 @@ export default function RootLayout({
           rel="alternate"
           type="application/rss+xml"
           title={`${SITE.name} Blog`}
-          href="https://samuelsurf.medium.com/feed"
+          href="/blog/rss.xml"
         />
         <script
           type="application/ld+json"

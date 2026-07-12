@@ -23,6 +23,7 @@ import campusDesktopActivities from "../assets/campus-career/campus-desktop-acti
 import campusMobileHero from "../assets/campus-career/campus-mobile-hero.png";
 import campusMobileActivities from "../assets/campus-career/campus-mobile-activities.png";
 import campusMobileHighlights from "../assets/campus-career/campus-mobile-highlights.png";
+import abuadEngineeringPortal from "../assets/abuad-engineering/obe-portal-desktop.png";
 
 import firebaseLogo from "../assets/firebase-1.svg";
 import cloudflareLogo from "../assets/cloudflare.svg";
@@ -319,7 +320,6 @@ const PlayStoreIcon = () => (
 
 // --- Types ---
 
-type ProjectLayout = "mobile-fan" | "desktop-mobile-hybrid";
 type TechIcon = ComponentType;
 
 interface ProjectBase {
@@ -337,6 +337,7 @@ interface ProjectBase {
     caseStudy?: string;
   };
   featured: boolean;
+  badge?: string;
   isMainImageFrameless?: boolean;
   hideMobileNotch?: boolean;
 }
@@ -367,10 +368,58 @@ interface DesktopMobileHybridProject extends ProjectBase {
   };
 }
 
-type Project = MobileFanProject | DesktopMobileHybridProject;
+interface DesktopShowcaseProject extends ProjectBase {
+  layout: "desktop-showcase";
+  images: {
+    main?: never;
+    left?: never;
+    right?: never;
+    desktop: StaticImageData;
+    mobile?: never;
+    desktopGallery?: StaticImageData[];
+    mobileGallery?: never;
+  };
+}
+
+type Project =
+  | MobileFanProject
+  | DesktopMobileHybridProject
+  | DesktopShowcaseProject;
 
 // --- Projects Data ---
 const projects: Project[] = [
+  {
+    title: "ABUAD Engineering OBE Portal",
+    description:
+      "A clear, searchable academic portal that helped the department present the information required during its successful COREN accreditation review.",
+    longDescription:
+      "I built the College of Engineering portal to turn dense accreditation and programme records into an accessible digital experience. Department profiles, programme outcomes, course learning outcomes, curriculum mappings, handbooks, lecture plans, and supporting media are organised in one responsive interface. Dr A.O. Ojo used the portal while presenting to the COREN accreditation team, who were impressed by how quickly they could find what they needed.",
+    layout: "desktop-showcase",
+    images: {
+      desktop: abuadEngineeringPortal,
+      desktopGallery: [abuadEngineeringPortal],
+    },
+    tags: [
+      "React",
+      "Vite",
+      "Cloudflare Pages",
+      "COREN",
+      "OBE",
+      "Academic Portal",
+    ],
+    techStack: [
+      { name: "React", icon: ReactIcon },
+      { name: "Vite", icon: ViteIcon },
+      { name: "Cloudflare", icon: CloudflareIcon },
+    ],
+    links: {
+      github: "https://github.com/Samthesurf/abuad_engineering_web",
+      site: "https://abuadengineering.pages.dev",
+      demo: "https://abuadengineering.pages.dev",
+    },
+    featured: true,
+    badge: "Client Impact",
+  },
   {
     title: "Engineering Hub",
     description:
@@ -501,6 +550,8 @@ const projects: Project[] = [
 
 export default function ProjectsSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const lightboxDialogRef = useRef<HTMLDivElement>(null);
+  const lightboxCloseRef = useRef<HTMLButtonElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [selectedScreens, setSelectedScreens] = useState<
     Record<string, { desktop: number; mobile: number }>
@@ -510,6 +561,7 @@ export default function ProjectsSection() {
     kind: "desktop" | "mobile";
     index: number;
   }>(null);
+  const isLightboxOpen = lightbox !== null;
 
   const setActiveScreen = (
     projectTitle: string,
@@ -567,14 +619,35 @@ export default function ProjectsSection() {
   }, []);
 
   useEffect(() => {
-    if (!lightbox) return;
+    if (!isLightboxOpen) return;
 
     const previousOverflow = document.body.style.overflow;
+    const previouslyFocused = document.activeElement as HTMLElement | null;
     document.body.style.overflow = "hidden";
+    const focusFrame = window.requestAnimationFrame(() => {
+      lightboxCloseRef.current?.focus();
+    });
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         setLightbox(null);
+        return;
+      }
+
+      if (e.key === "Tab") {
+        const focusable = lightboxDialogRef.current?.querySelectorAll<HTMLElement>(
+          'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])',
+        );
+        if (!focusable || focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
         return;
       }
 
@@ -598,10 +671,12 @@ export default function ProjectsSection() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => {
+      window.cancelAnimationFrame(focusFrame);
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = previousOverflow;
+      previouslyFocused?.focus();
     };
-  }, [lightbox, lightboxLen]);
+  }, [isLightboxOpen, lightboxLen]);
 
   return (
     <section
@@ -688,6 +763,31 @@ export default function ProjectsSection() {
                           />
                         )}
                       </div>
+                    </div>
+                  )}
+
+                  {project.layout === "desktop-showcase" && (
+                    <div className="w-full py-10 flex items-center justify-center">
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setLightbox({
+                            projectTitle: project.title,
+                            kind: "desktop",
+                            index: 0,
+                          })
+                        }
+                        className="relative w-[95%] z-10 transform transition-transform duration-700 group-hover:scale-[1.03] focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/70 rounded-xl"
+                        aria-label={`Open ${project.title} screenshot`}
+                      >
+                        <DesktopFrame
+                          src={project.images.desktop}
+                          alt={`${project.title} desktop interface`}
+                        />
+                        <span className="absolute top-3 right-3 z-30 px-3 py-1 text-xs font-semibold rounded-full bg-black/60 text-white backdrop-blur-md border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity">
+                          Click to zoom
+                        </span>
+                      </button>
                     </div>
                   )}
 
@@ -859,7 +959,7 @@ export default function ProjectsSection() {
                       {project.title}
                     </h3>
                     <span className="px-3 py-1 text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 bg-blue-100 dark:bg-blue-900/30 rounded-full border border-blue-200 dark:border-blue-800">
-                      Full Stack
+                      {project.badge ?? "Full Stack"}
                     </span>
                   </div>
                   <p className="text-slate-600 dark:text-gray-400 text-lg leading-relaxed mb-4">
@@ -985,6 +1085,7 @@ export default function ProjectsSection() {
       {/* Lightbox */}
       {lightbox && lightboxSrc && (
         <div
+          ref={lightboxDialogRef}
           className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
           role="dialog"
           aria-modal="true"
@@ -1023,6 +1124,7 @@ export default function ProjectsSection() {
               </div>
 
               <button
+                ref={lightboxCloseRef}
                 type="button"
                 onClick={() => setLightbox(null)}
                 className="px-3 py-2 rounded-full bg-white/10 hover:bg-white/20 text-white text-sm font-semibold transition-colors"

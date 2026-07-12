@@ -1,7 +1,8 @@
 import { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { SITE } from "@/lib/site-config";
-import { VARIANT_MAP, NAME_VARIANTS, NameVariant } from "@/lib/name-variants";
+import { VARIANT_MAP, NAME_VARIANTS } from "@/lib/name-variants";
 import HeaderNav from "@/components/HeaderNav";
 import SkillsSection from "@/components/SkillsSection";
 import ProjectsSection from "@/components/ProjectsSection";
@@ -142,12 +143,12 @@ export default async function NameVariantPage({ params }: PageProps) {
             </p>
 
             <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-5">
-              <a
+              <Link
                 href="/"
                 className="rounded-full bg-slate-900 px-6 py-3 text-center text-base font-bold text-white shadow-[0_0_10px_rgba(0,0,0,0.1)] transition-colors hover:bg-slate-700 sm:px-8 sm:py-4 sm:text-lg dark:bg-white dark:text-black dark:shadow-[0_0_10px_rgba(255,255,255,0.2)] dark:hover:bg-gray-200"
               >
                 View full portfolio
-              </a>
+              </Link>
               <a
                 href="#contact"
                 className="group flex items-center justify-center gap-2 rounded-full border border-slate-900 px-6 py-3 text-base font-semibold text-slate-900 backdrop-blur-sm transition-all hover:border-slate-900 hover:bg-slate-100 active:scale-95 sm:px-8 sm:py-4 sm:text-lg dark:border-white/10 dark:text-white dark:hover:border-white/30 dark:hover:bg-white/5"

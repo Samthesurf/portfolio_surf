@@ -3,7 +3,9 @@ import HeaderNav from "../components/HeaderNav";
 import HeroVisual from "../components/HeroVisual";
 import SkillsSection from "../components/SkillsSection";
 import ProjectsSection from "../components/ProjectsSection";
+import TestimonialsSection from "../components/TestimonialsSection";
 import BlogSection from "../components/BlogSection";
+import BuyerFAQ from "../components/BuyerFAQ";
 import ContactSection from "../components/ContactSection";
 
 export default function Home() {
@@ -21,10 +23,10 @@ export default function Home() {
 
             {/* Left Column: Text Content */}
             <div className="order-last max-w-3xl lg:order-first">
-              {/* Hi there - PRESERVED STYLING */}
+              {/* Outcome-led introduction */}
               <div className="mb-3 sm:mb-6">
                 <AnimatedText
-                  text="Hi there,"
+                  text="From idea to launch,"
                   className="font-rubik-wet-paint text-2xl sm:text-3xl md:text-4xl font-medium text-blue-500 dark:text-blue-400 tracking-wide"
                   staggerDuration={0.05}
                 />
@@ -32,31 +34,31 @@ export default function Home() {
 
               {/* Main Heading */}
               <h1 className="text-[clamp(2.45rem,11vw,4.5rem)] md:text-7xl lg:text-8xl font-bold leading-[1.05] tracking-tight mb-2 sm:mb-4">
-                <span className="text-slate-900 dark:text-white">I am </span>
+                <span className="text-slate-900 dark:text-white">I turn ideas into </span>
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 dark:from-white via-slate-600 dark:via-gray-200 to-slate-400 dark:to-gray-400">
-                  Samuel Ukpai
-                </span>,
+                  reliable digital products
+                </span>.
                 <br />
                 <span className="text-slate-500 dark:text-gray-500 font-medium text-[clamp(1.55rem,7vw,3.5rem)] md:text-5xl lg:text-6xl mt-2 block">
-                  Full Stack Software Developer.
+                  Useful, polished, and ready to launch.
                 </span>
               </h1>
               <p className="text-blue-500 dark:text-blue-400 text-base sm:text-lg md:text-xl font-medium mb-2">
-                Mobile Apps • Web Development • Backend • AI Integrations
+                Samuel Ukpai • Full Stack Software Developer
               </p>
               <p className="text-slate-500 dark:text-gray-400 text-base sm:text-lg md:text-xl max-w-lg mb-6 sm:mb-10 leading-relaxed">
-                Crafting exceptional digital experiences with precision and passion across
-                mobile apps, modern web, and AI-integrated backends.
+                I help founders, organisations, and teams plan, build, and launch useful
+                mobile apps, web platforms, backends, and AI-powered experiences.
               </p>
 
               {/* Buttons */}
               <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-5">
                 <a href="#projects" className="w-full rounded-full bg-slate-900 px-6 py-3 text-center text-base font-bold text-white shadow-[0_0_10px_rgba(0,0,0,0.1)] transition-colors hover:bg-slate-700 sm:w-auto sm:px-8 sm:py-4 sm:text-lg dark:bg-white dark:text-black dark:shadow-[0_0_10px_rgba(255,255,255,0.2)] dark:hover:bg-gray-200">
-                  See my work
+                  Explore delivered products
                 </a>
 
                 <a href="#contact" className="group flex w-full items-center justify-center gap-2 rounded-full border border-slate-900 px-6 py-3 text-base font-semibold text-slate-900 backdrop-blur-sm transition-all hover:border-slate-900 hover:bg-slate-100 active:scale-95 sm:w-auto sm:px-8 sm:py-4 sm:text-lg dark:border-white/10 dark:text-white dark:hover:border-white/30 dark:hover:bg-white/5">
-                  Contact me
+                  Discuss your project
                   <span className="group-hover:translate-x-1 transition-transform">→</span>
                 </a>
               </div>
@@ -74,9 +76,13 @@ export default function Home() {
       {/* Skills/Services Section */}
       <SkillsSection />
       <ProjectsSection />
+      <TestimonialsSection />
 
       {/* Blog Section */}
       <BlogSection />
+
+      {/* Buyer FAQ */}
+      <BuyerFAQ />
 
       {/* Contact Section */}
       <ContactSection />
