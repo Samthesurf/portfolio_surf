@@ -402,6 +402,15 @@ export default function Editor({ article, onUpdateArticle, onUploadImage, onOpen
     return { wordCount: wCount, charCount: cCount, readingTime: rTime };
   }, [article.content]);
 
+  // Track insertion position before opening file picker
+  const imageInsertPosRef = useRef<number | null>(null);
+
+  const triggerImagePicker = () => {
+    if (!editor) return;
+    imageInsertPosRef.current = editor.state.selection.from;
+    fileInputRef.current?.click();
+  };
+
   // File upload trigger
   const handleImageFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -412,7 +421,13 @@ export default function Editor({ article, onUpdateArticle, onUploadImage, onOpen
     try {
       const url = await onUploadImage(file);
       const alt = file.name.replace(/\.[^.]+$/, '').replaceAll('-', ' ');
-      editor.chain().focus().insertContent({
+      const savedPos = imageInsertPosRef.current;
+      const docSize = editor.state.doc.content.size;
+      const targetPos = typeof savedPos === 'number'
+        ? Math.min(Math.max(0, savedPos), docSize)
+        : docSize;
+
+      editor.chain().focus(targetPos).insertContentAt(targetPos, {
         type: 'articleImage',
         attrs: {
           'data-src': url,
@@ -427,6 +442,7 @@ export default function Editor({ article, onUpdateArticle, onUploadImage, onOpen
       setUploadError(error instanceof Error ? error.message : 'Image upload failed');
     } finally {
       setIsUploading(false);
+      imageInsertPosRef.current = null;
     }
   };
 
@@ -633,7 +649,7 @@ export default function Editor({ article, onUpdateArticle, onUploadImage, onOpen
 
           {/* Image */}
           <button
-            onClick={() => fileInputRef.current?.click()}
+            onClick={triggerImagePicker}
             disabled={isUploading}
             className="p-1 rounded hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors text-[10px] font-bold text-slate-550 dark:text-slate-400 disabled:opacity-50"
             title="Upload Image"
@@ -775,7 +791,7 @@ export default function Editor({ article, onUpdateArticle, onUploadImage, onOpen
                 </button>
                 <button
                   onClick={() => {
-                    fileInputRef.current?.click();
+                    triggerImagePicker();
                     setShowBlockMenu(false);
                   }}
                   className="flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-900/60 transition-colors"
