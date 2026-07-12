@@ -79,3 +79,9 @@ test("related article selection prefers shared tags", () => {
   }));
   assert.equal(selectRelatedBlogPosts(current, [unrelated, related])[0].slug, related.slug);
 });
+
+test("studio article validation ignores extra localRevision field", () => {
+  const article = validateBlogDocument({ ...validDocument, localRevision: 5 });
+  assert.equal(article.slug, "secure-browser-writing");
+  assert.equal((article as unknown as Record<string, unknown>).localRevision, undefined);
+});

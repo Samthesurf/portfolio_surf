@@ -215,12 +215,33 @@ function ArticleImageNodeView(props: NodeViewProps) {
           </div>
         )}
 
-        <div className="absolute top-2 right-2 flex gap-1 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] text-white opacity-0 group-hover/image:opacity-100 transition-opacity">
+        <div contentEditable={false} className="absolute top-2 right-2 flex items-center gap-1.5 bg-black/65 backdrop-blur-md pl-2.5 pr-1 py-1 rounded-full text-[10px] text-white shadow-lg">
           <button
+            type="button"
             onClick={() => updateAttr('data-wide', wide ? 'false' : 'true')}
             className={`font-semibold hover:text-blue-400 transition-colors ${wide ? 'text-blue-400' : ''}`}
           >
             {wide ? 'Wide Layout' : 'Standard Layout'}
+          </button>
+          <div className="w-[1px] h-3 bg-white/20 mx-0.5" />
+          <button
+            type="button"
+            onMouseDown={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+            }}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              props.deleteNode();
+            }}
+            aria-label="Remove image"
+            title="Remove image"
+            className="flex h-6 w-6 items-center justify-center rounded-full bg-red-500/20 text-red-100 transition-colors hover:bg-red-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/80"
+          >
+            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" />
+            </svg>
           </button>
         </div>
       </div>
@@ -353,7 +374,7 @@ export default function Editor({ article, onUpdateArticle, onUploadImage, onOpen
     return () => editor.view.dom.removeEventListener('keydown', handleKeyDown);
   }, [editor]);
 
-  // Position the block insertion control beside the selected or hovered block.
+  // Position the block insertion control beside the selected block.
   useEffect(() => {
     if (!editor) return;
 
@@ -378,17 +399,14 @@ export default function Editor({ article, onUpdateArticle, onUploadImage, onOpen
       positionForElement(editor.view.domAtPos($from.start()).node);
     };
     const handleFocus = () => updateFromSelection();
-    const handleMouseMove = (event: MouseEvent) => positionForElement(event.target as Node);
 
     editor.on('selectionUpdate', updateFromSelection);
     editor.on('focus', handleFocus);
-    editor.view.dom.addEventListener('mousemove', handleMouseMove);
     updateFromSelection();
 
     return () => {
       editor.off('selectionUpdate', updateFromSelection);
       editor.off('focus', handleFocus);
-      editor.view.dom.removeEventListener('mousemove', handleMouseMove);
     };
   }, [editor]);
 

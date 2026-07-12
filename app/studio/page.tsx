@@ -39,6 +39,10 @@ export default function StudioPage() {
   const articlesRef = useRef<Article[]>([]);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const backupCheckedRef = useRef(false);
+  const saveStatesRef = useRef<Record<string, {
+    inFlightRevision: number | null;
+    isSaving: boolean;
+  }>>({});
   const activeArticle = useMemo(
     () => articles.find((article) => article.id === activeArticleId) ?? null,
     [articles, activeArticleId],
@@ -80,7 +84,7 @@ export default function StudioPage() {
   }, []);
 
   const replaceArticle = React.useCallback((saved: Omit<Article, "id"> & { slug: string }) => {
-    const next = toArticle(saved);
+    const next = { ...toArticle(saved), localRevision: 0 };
     setArticles((current) => current.map((article) => (article.id === next.id ? next : article)));
     articlesRef.current = articlesRef.current.map((article) => (article.id === next.id ? next : article));
     return next;
@@ -89,11 +93,26 @@ export default function StudioPage() {
   const saveArticle = React.useCallback(async (articleId: string) => {
     const article = articlesRef.current.find((candidate) => candidate.id === articleId);
     if (!article) return;
+
+    if (!saveStatesRef.current[articleId]) {
+      saveStatesRef.current[articleId] = { inFlightRevision: null, isSaving: false };
+    }
+    const saveState = saveStatesRef.current[articleId];
+    if (saveState.isSaving) {
+      return;
+    }
+
+    saveState.isSaving = true;
+    const revisionToSave = article.localRevision || 0;
+    saveState.inFlightRevision = revisionToSave;
+
     setSaveStatus("saving");
     setErrorMessage("");
+    let saveSucceeded = false;
     try {
-      const { id: _id, etag, ...document } = article;
+      const { id: _id, etag, localRevision: _localRev, ...document } = article;
       void _id;
+      void _localRev;
       const response = await fetch(`/api/studio/articles/${encodeURIComponent(article.slug)}`, {
         method: "PUT",
         credentials: "same-origin",
@@ -105,14 +124,50 @@ export default function StudioPage() {
         error?: string;
       };
       if (!response.ok || !data.article) throw new Error(data.error ?? "Save failed");
-      replaceArticle(data.article);
-      localStorage.removeItem(`studio-backup:${article.slug}`);
-      setSaveStatus("saved");
+
+      const currentArticle = articlesRef.current.find((a) => a.id === articleId);
+      if (currentArticle) {
+        const currentRevision = currentArticle.localRevision || 0;
+        if (currentRevision > revisionToSave) {
+          const next = {
+            ...currentArticle,
+            etag: data.article.etag,
+          };
+          setArticles((current) => current.map((a) => (a.id === next.id ? next : a)));
+          articlesRef.current = articlesRef.current.map((a) => (a.id === next.id ? next : a));
+        } else {
+          const next = {
+            ...toArticle(data.article),
+            content: currentArticle.content,
+            localRevision: revisionToSave,
+          };
+          setArticles((current) => current.map((a) => (a.id === next.id ? next : a)));
+          articlesRef.current = articlesRef.current.map((a) => (a.id === next.id ? next : a));
+        }
+      }
+
+      const latestArticle = articlesRef.current.find((a) => a.id === articleId);
+      const latestRevision = latestArticle?.localRevision || 0;
+
+      if (latestRevision <= revisionToSave) {
+        localStorage.removeItem(`studio-backup:${article.slug}`);
+        setSaveStatus("saved");
+      }
+      saveSucceeded = true;
     } catch (error) {
       setSaveStatus("error");
       setErrorMessage(error instanceof Error ? error.message : "Save failed");
+    } finally {
+      saveState.isSaving = false;
+      saveState.inFlightRevision = null;
+
+      const latestArticle = articlesRef.current.find((a) => a.id === articleId);
+      const latestRevision = latestArticle?.localRevision || 0;
+      if (saveSucceeded && latestRevision > revisionToSave) {
+        void saveArticle(articleId);
+      }
     }
-  }, [replaceArticle]);
+  }, []);
 
   useEffect(() => {
     if (isLoading || backupCheckedRef.current) return;
@@ -158,9 +213,13 @@ export default function StudioPage() {
     const now = new Date().toISOString();
     setSaveStatus("unsaved");
     setArticles((current) => {
-      const next = current.map((article) =>
-        article.id === activeArticleId ? { ...article, ...updatedFields, updatedAt: now } : article,
-      );
+      const next = current.map((article) => {
+        if (article.id === activeArticleId) {
+          const nextRev = (article.localRevision || 0) + 1;
+          return { ...article, ...updatedFields, updatedAt: now, localRevision: nextRev };
+        }
+        return article;
+      });
       articlesRef.current = next;
       const changed = next.find((article) => article.id === activeArticleId);
       if (changed) localStorage.setItem(`studio-backup:${changed.slug}`, JSON.stringify(changed));
