@@ -15,27 +15,26 @@ import ReadingProgress from "../../../components/blog/ReadingProgress";
 import TableOfContents from "../../../components/blog/TableOfContents";
 import {
   formatBlogDate,
-  getAllBlogPosts,
-  getBlogPost,
-  getRelatedBlogPosts,
 } from "../../../lib/blog";
+import {
+  getPublishedBlogPost,
+  listPublishedBlogPosts,
+  selectRelatedBlogPosts,
+} from "../../../lib/blog-store";
 import { SITE, absoluteUrl } from "../../../lib/site-config";
 
 interface BlogArticlePageProps {
   params: Promise<{ slug: string }>;
 }
 
-export const dynamicParams = false;
-
-export function generateStaticParams() {
-  return getAllBlogPosts().map((post) => ({ slug: post.slug }));
-}
+export const dynamic = "force-dynamic";
+export const dynamicParams = true;
 
 export async function generateMetadata({
   params,
 }: BlogArticlePageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = getBlogPost(slug);
+  const post = await getPublishedBlogPost(slug);
   if (!post) return {};
 
   const url = `${SITE.url}/blog/${post.slug}`;
@@ -70,12 +69,12 @@ export async function generateMetadata({
 
 export default async function BlogArticlePage({ params }: BlogArticlePageProps) {
   const { slug } = await params;
-  const post = getBlogPost(slug);
+  const post = await getPublishedBlogPost(slug);
   if (!post) notFound();
 
   const url = `${SITE.url}/blog/${post.slug}`;
   const image = absoluteUrl(post.coverImage ?? SITE.ogImage);
-  const relatedPosts = getRelatedBlogPosts(post);
+  const relatedPosts = selectRelatedBlogPosts(post, await listPublishedBlogPosts());
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -117,7 +116,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
       <HeaderNav />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
 
       <main className="pb-24 pt-32">

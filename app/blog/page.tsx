@@ -4,7 +4,7 @@ import Link from "next/link";
 import HeaderNav from "../../components/HeaderNav";
 import BlogExplorer from "../../components/blog/BlogExplorer";
 import BlogPostCard from "../../components/blog/BlogPostCard";
-import { getAllBlogPosts, getBlogTags } from "../../lib/blog";
+import { getBlogTags, listPublishedBlogPosts } from "../../lib/blog-store";
 import { SITE } from "../../lib/site-config";
 
 export const metadata: Metadata = {
@@ -34,8 +34,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function BlogPage() {
-  const posts = getAllBlogPosts();
+export const dynamic = "force-dynamic";
+
+export default async function BlogPage() {
+  const posts = await listPublishedBlogPosts();
   const featured = posts.find((post) => post.featured) ?? posts[0];
   const archivePosts = featured
     ? posts.filter((post) => post.slug !== featured.slug)

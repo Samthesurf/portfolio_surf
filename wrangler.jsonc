@@ -21,6 +21,19 @@
   "images": {
     "binding": "IMAGES"
   },
+  "r2_buckets": [
+    {
+      "binding": "BLOG_CONTENT",
+      "bucket_name": "samuelsurf-content"
+    }
+  ],
+  "vars": {
+    "STUDIO_ALLOWED_EMAIL": "ukpsamuel67@gmail.com"
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
   "routes": [
     {
       "pattern": "samuelsurf.me/*",
@@ -29,6 +42,10 @@
     {
       "pattern": "www.samuelsurf.me/*",
       "zone_name": "samuelsurf.me"
+    },
+    {
+      "pattern": "write.samuelsurf.me",
+      "custom_domain": true
     }
   ]
 }

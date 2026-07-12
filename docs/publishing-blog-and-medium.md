@@ -46,20 +46,21 @@ Both pages therefore identify the article on your domain as the preferred source
 
 ## Recommended workflow
 
-1. Write the article in `content/blog/<slug>.mdx`.
-2. Add the article's images under `public/blog/<slug>/`.
-3. Set `draft: false` when it is ready.
-4. Build and deploy the portfolio.
-5. Open the final `https://samuelsurf.me/blog/<slug>` URL and check the article.
-6. Confirm that it appears in the blog index and sitemap.
-7. Optionally request indexing through Google Search Console.
-8. Open Medium and go to **Stories**.
-9. Select **Import a story**.
-10. Paste the `samuelsurf.me` article URL.
-11. Review the imported formatting, image captions, code, links, and headings.
-12. Publish the Medium version.
-13. Edit the Medium story and inspect **Customize canonical link** in its advanced settings.
-14. Confirm that it contains the original `samuelsurf.me/blog/...` URL.
+1. Open `write.samuelsurf.me` and create or select an article.
+2. Write the article, upload its images, and review it in Preview or Split mode.
+3. Complete the excerpt, tags, cover image and cover alt text in Article Settings.
+4. Keep it as a private draft until the final review is complete.
+5. Confirm the publish action. The R2-backed public blog updates immediately without a website deployment.
+6. Open the final `https://samuelsurf.me/blog/<slug>` URL and check the article.
+7. Confirm that it appears in the blog index, sitemap and RSS feed.
+8. Optionally request indexing through Google Search Console.
+9. Open Medium and go to **Stories**.
+10. Select **Import a story**.
+11. Paste the `samuelsurf.me` article URL.
+12. Review the imported formatting, image captions, code, links, and headings.
+13. Publish the Medium version.
+14. Edit the Medium story and inspect **Customize canonical link** in its advanced settings.
+15. Confirm that it contains the original `samuelsurf.me/blog/...` URL.
 
 Medium's official import tool normally preserves the original publication date and automatically sets the imported source as the canonical URL. Always verify it after publishing.
 
@@ -89,7 +90,7 @@ Publishing on your own domain first means:
 
 ## Updating an article
 
-Update the original article on `samuelsurf.me` first and change its `updatedAt` value. Then update the Medium copy if the changes are substantial. Keep the Medium canonical URL pointing to the same original article.
+Update and save the original article in `write.samuelsurf.me` first. The studio updates `updatedAt` and preserves the previous version automatically. Then update the Medium copy if the changes are substantial. Keep the Medium canonical URL pointing to the same original article.
 
 ## Final checklist
 

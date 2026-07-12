@@ -31,9 +31,14 @@ export default function ContactSection() {
                 }),
             });
 
-            const result = await response.json();
+            const result: unknown = await response.json();
+            const succeeded =
+                result !== null &&
+                typeof result === "object" &&
+                "success" in result &&
+                result.success === true;
 
-            if (result.success) {
+            if (succeeded) {
                 setStatus("success");
                 setFormData({ name: "", email: "", message: "" });
                 setTimeout(() => setStatus("idle"), 5000);

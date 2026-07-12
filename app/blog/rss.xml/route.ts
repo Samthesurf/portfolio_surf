@@ -1,7 +1,7 @@
-import { getAllBlogPosts } from "../../../lib/blog";
+import { listPublishedBlogPosts } from "../../../lib/blog-store";
 import { SITE } from "../../../lib/site-config";
 
-export const dynamic = "force-static";
+export const dynamic = "force-dynamic";
 
 function escapeXml(value: string): string {
   return value
@@ -12,8 +12,8 @@ function escapeXml(value: string): string {
     .replaceAll("'", "&apos;");
 }
 
-export function GET() {
-  const posts = getAllBlogPosts();
+export async function GET() {
+  const posts = await listPublishedBlogPosts();
   const items = posts
     .map((post) => {
       const url = `${SITE.url}/blog/${post.slug}`;

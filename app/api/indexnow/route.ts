@@ -50,9 +50,14 @@ export async function POST(request: Request) {
   let urls: string[] = [];
 
   try {
-    const body = await request.json();
-    if (Array.isArray(body.urls)) {
-      urls = body.urls;
+    const body: unknown = await request.json();
+    if (
+      body &&
+      typeof body === "object" &&
+      "urls" in body &&
+      Array.isArray(body.urls)
+    ) {
+      urls = body.urls.filter((url): url is string => typeof url === "string");
     }
   } catch {
     // No body or invalid JSON — fall through to submit all sitemap URLs

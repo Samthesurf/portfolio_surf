@@ -1,9 +1,11 @@
 import { MetadataRoute } from 'next';
 import { SITE } from '../lib/site-config';
 import { NAME_VARIANTS } from '../lib/name-variants';
-import { getAllBlogPosts } from '../lib/blog';
+import { listPublishedBlogPosts } from '../lib/blog-store';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const dynamic = 'force-dynamic';
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = SITE.url;
     const now = new Date();
 
@@ -53,7 +55,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.7,
     }));
 
-    const blogPages: MetadataRoute.Sitemap = getAllBlogPosts().map((post) => ({
+    const blogPages: MetadataRoute.Sitemap = (await listPublishedBlogPosts()).map((post) => ({
         url: `${baseUrl}/blog/${post.slug}`,
         lastModified: new Date(post.updatedAt ?? post.publishedAt),
         changeFrequency: 'monthly' as const,

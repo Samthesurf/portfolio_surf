@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint app components lib scripts tests middleware.ts next.config.ts open-next.config.ts eslint.config.mjs postcss.config.mjs",
-    "test:blog": "node --import tsx --test tests/blog.test.ts",
+    "test:blog": "node --import tsx --test tests/*.test.ts",
     "cf:build": "opennextjs-cloudflare build",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "opennextjs-cloudflare build && NODE_OPTIONS=--dns-result-order=ipv4first opennextjs-cloudflare deploy",
@@ -21,6 +21,7 @@
     "framer-motion": "^12.23.24",
     "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.3",
+    "jose": "^6.2.3",
     "mdast-util-to-string": "^4.0.0",
     "next": "^16.2.9",
     "next-mdx-remote": "^6.0.0",
@@ -36,6 +37,7 @@
     "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260702.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
