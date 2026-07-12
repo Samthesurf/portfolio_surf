@@ -417,16 +417,6 @@ export default function StudioPage() {
                 >
                   Preview
                 </button>
-                <button
-                  onClick={() => setViewMode('split')}
-                  className={`hidden md:block px-3 py-1 rounded transition-all ${
-                    viewMode === 'split'
-                      ? 'bg-white dark:bg-slate-800 shadow-sm text-slate-900 dark:text-white'
-                      : 'text-slate-450 hover:text-slate-700 dark:text-slate-500 dark:hover:text-slate-350'
-                  }`}
-                >
-                  Split
-                </button>
               </div>
             )}
 
@@ -481,22 +471,6 @@ export default function StudioPage() {
                 </div>
               )}
 
-              {/* Split Mode */}
-              {viewMode === 'split' && (
-                <div className="w-full h-full flex divide-x divide-slate-200 dark:divide-slate-800/80">
-                  <div className="w-1/2 h-full">
-                    <Editor
-                      article={activeArticle}
-                      onUpdateArticle={handleUpdateArticle}
-                      onUploadImage={handleUploadMedia}
-                      onOpenShortcutsHelp={() => setIsShortcutsOpen(true)}
-                    />
-                  </div>
-                  <div className="w-1/2 h-full overflow-y-auto bg-white dark:bg-[#030303]">
-                    <Preview article={activeArticle} />
-                  </div>
-                </div>
-              )}
 
               {/* Metadata Panel (Slides out on right) */}
               <MetadataPanel

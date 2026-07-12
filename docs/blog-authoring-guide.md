@@ -12,11 +12,12 @@ Only the Cloudflare Access identity for `ukpsamuel67@gmail.com` is allowed throu
 
 1. Open `write.samuelsurf.me` and complete the Cloudflare Access sign-in.
 2. Select **New Article** and enter a working title.
-3. Write in the main editor. Changes are saved automatically after a short pause.
-4. Open **Article Settings** to manage the excerpt, tags, publication status, cover image and cover alt text.
-5. Use **Write**, **Preview** or **Split** depending on the task.
-6. Use **Image** in the toolbar to upload and insert an article image at the cursor.
-7. Keep the article as a draft until it is ready. Publishing requires an explicit confirmation.
+3. Type directly in the visual writing canvas. The text appears as readers will see it, with no Markdown source view.
+4. Select text to reveal the floating formatting menu for bold, italic, inline code and links.
+5. Hover beside a paragraph or place the cursor in it, then use the **+** button to add headings, lists, quotes, code blocks, callouts, dividers or images.
+6. Open **Article Settings** to manage the excerpt, tags, publication status, cover image and cover alt text.
+7. Use **Write** for normal editing and **Preview** for a final read-through.
+8. Keep the article as a draft until it is ready. Publishing requires an explicit confirmation.
 
 Drafts are stored privately in the `samuelsurf-content` R2 bucket and are not exposed by the public blog routes. Published articles become visible immediately without a Git commit or a new website deployment.
 
@@ -31,22 +32,9 @@ Drafts are stored privately in the `samuelsurf-content` R2 bucket and are not ex
 
 ## Supported article features
 
-The editor supports normal Markdown and the portfolio's MDX components, including:
+The visual editor supports paragraphs, headings, bold and italic text, links, inline code, ordered and unordered lists, blockquotes, fenced code blocks, dividers, callouts, and article images. Images expose normal fields for alt text, captions and layout width. Callouts expose their type and title directly in the canvas.
 
-```mdx
-<Callout type="tip" title="A useful note">
-  Supporting explanation.
-</Callout>
-
-<ArticleImage
-  src="/media/blog/article-slug/image.webp"
-  alt="A precise image description"
-  caption="Optional caption"
-  width={1600}
-  height={900}
-  wide
-/>
-```
+The studio stores a safe Markdown-compatible representation internally so existing public articles and publishing APIs remain compatible. That source format is an implementation detail and is not shown during normal writing.
 
 ## Keyboard shortcuts
 
@@ -56,11 +44,13 @@ The editor supports normal Markdown and the portfolio's MDX components, includin
 | `Ctrl/Cmd + P` | Toggle write and preview |
 | `Ctrl/Cmd + B` | Bold |
 | `Ctrl/Cmd + I` | Italic |
-| `Ctrl/Cmd + K` | Link |
-| `Alt + 2` | Heading 2 |
-| `Alt + 3` | Heading 3 |
-| `Alt + C` | Callout |
-| `Alt + I` | Upload an image |
+| `Ctrl/Cmd + K` | Add or edit a link |
+| `Ctrl/Cmd + Alt + 2` | Heading 2 |
+| `Ctrl/Cmd + Alt + 3` | Heading 3 |
+| `Ctrl/Cmd + Shift + 8` | Bulleted list |
+| `Ctrl/Cmd + Shift + 7` | Numbered list |
+| `Ctrl/Cmd + Shift + B` | Blockquote |
+| `Ctrl/Cmd + Alt + 0` | Code block |
 
 ## Legacy MDX files
 

@@ -5,5 +5,5 @@ export interface Article extends BlogDocument {
   etag?: string;
 }
 
-export type ViewMode = "write" | "preview" | "split";
+export type ViewMode = "write" | "preview";
 export type SaveStatus = "saved" | "saving" | "unsaved" | "error";

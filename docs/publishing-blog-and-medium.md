@@ -47,7 +47,7 @@ Both pages therefore identify the article on your domain as the preferred source
 ## Recommended workflow
 
 1. Open `write.samuelsurf.me` and create or select an article.
-2. Write the article, upload its images, and review it in Preview or Split mode.
+2. Write directly in the visual editor, add images or structured blocks from the **+** menu, and review the finished article in Preview mode.
 3. Complete the excerpt, tags, cover image and cover alt text in Article Settings.
 4. Keep it as a private draft until the final review is complete.
 5. Confirm the publish action. The R2-backed public blog updates immediately without a website deployment.

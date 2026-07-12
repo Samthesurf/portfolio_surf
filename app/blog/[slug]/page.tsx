@@ -2,20 +2,14 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeSlug from "rehype-slug";
-import remarkGfm from "remark-gfm";
 
 import HeaderNav from "../../../components/HeaderNav";
 import ArticleActions from "../../../components/blog/ArticleActions";
 import BlogPostCard from "../../../components/blog/BlogPostCard";
-import { mdxComponents } from "../../../components/blog/MDXComponents";
 import ReadingProgress from "../../../components/blog/ReadingProgress";
 import TableOfContents from "../../../components/blog/TableOfContents";
-import {
-  formatBlogDate,
-} from "../../../lib/blog";
+import { formatBlogDate } from "../../../lib/blog";
+import { renderBlogContent } from "../../../lib/blog-render";
 import {
   getPublishedBlogPost,
   listPublishedBlogPosts,
@@ -180,21 +174,7 @@ export default async function BlogArticlePage({ params }: BlogArticlePageProps) 
           <div className="mx-auto mt-14 max-w-[70ch] px-6 md:px-12 lg:px-0">
             <div className="min-w-0">
               <TableOfContents headings={post.headings} />
-              <div className="blog-prose">
-                <MDXRemote
-                  source={post.content}
-                  components={mdxComponents}
-                  options={{
-                    mdxOptions: {
-                      remarkPlugins: [remarkGfm],
-                      rehypePlugins: [
-                        rehypeSlug,
-                        [rehypeAutolinkHeadings, { behavior: "wrap" }],
-                      ],
-                    },
-                  }}
-                />
-              </div>
+              <div className="blog-prose">{renderBlogContent(post.content, post.headings)}</div>
 
               <footer className="mt-16 border-t border-slate-200 pt-8 dark:border-white/10">
                 <ArticleActions title={post.title} url={url} />

@@ -10,16 +10,17 @@ interface ShortcutsHelpProps {
 
 export default function ShortcutsHelp({ isOpen, onClose }: ShortcutsHelpProps) {
   const shortcuts = [
-    { keys: ['Ctrl', 'S'], desc: 'Force save current changes' },
-    { keys: ['Ctrl', 'P'], desc: 'Toggle between Edit and Preview modes' },
-    { keys: ['Ctrl', 'B'], desc: 'Format selected text as Bold' },
-    { keys: ['Ctrl', 'I'], desc: 'Format selected text as Italic' },
-    { keys: ['Ctrl', 'K'], desc: 'Insert markdown Link syntax' },
-    { keys: ['Alt', '2'], desc: 'Insert Heading 2' },
-    { keys: ['Alt', '3'], desc: 'Insert Heading 3' },
-    { keys: ['Alt', 'Q'], desc: 'Insert Blockquote' },
-    { keys: ['Alt', 'C'], desc: 'Insert custom Callout component' },
-    { keys: ['Alt', 'I'], desc: 'Insert custom Article Image component' },
+    { keys: ['Ctrl', 'S'], desc: 'Save the current article now' },
+    { keys: ['Ctrl', 'P'], desc: 'Toggle between writing and preview' },
+    { keys: ['Ctrl', 'B'], desc: 'Bold the selected text' },
+    { keys: ['Ctrl', 'I'], desc: 'Italicize the selected text' },
+    { keys: ['Ctrl', 'K'], desc: 'Add or edit a link' },
+    { keys: ['Ctrl', 'Alt', '2'], desc: 'Turn the current block into Heading 2' },
+    { keys: ['Ctrl', 'Alt', '3'], desc: 'Turn the current block into Heading 3' },
+    { keys: ['Ctrl', 'Shift', '8'], desc: 'Toggle a bulleted list' },
+    { keys: ['Ctrl', 'Shift', '7'], desc: 'Toggle a numbered list' },
+    { keys: ['Ctrl', 'Shift', 'B'], desc: 'Toggle a blockquote' },
+    { keys: ['Ctrl', 'Alt', '0'], desc: 'Toggle a code block' },
   ];
 
   return (
