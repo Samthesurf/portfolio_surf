@@ -6,8 +6,37 @@ import { SITE } from '@/lib/site-config';
  * GET  /api/indexnow  -> status check (is key configured?)
  * POST /api/indexnow  -> submit URLs { urls: string[] }
  *
- * If no urls are provided in the POST body, all sitemap URLs are submitted.
+ * If no urls are provided in the POST body, all URLs from the live sitemap
+ * are submitted. This keeps /blog and future articles covered without
+ * hand-editing a list.
  */
+
+const SITEMAP_URL = `${SITE.url}/sitemap.xml`;
+
+async function getSitemapUrls(): Promise<string[]> {
+  try {
+    const res = await fetch(SITEMAP_URL, { redirect: 'follow' });
+    if (!res.ok) return [];
+    const xml = await res.text();
+    const urls: string[] = [];
+    const locRegex = /<loc>([^<]+)<\/loc>/g;
+    let match: RegExpExecArray | null;
+    while ((match = locRegex.exec(xml)) !== null) {
+      const url = match[1].trim();
+      try {
+        if (new URL(url).hostname === new URL(SITE.url).hostname) {
+          urls.push(url);
+        }
+      } catch {
+        // Ignore malformed entries.
+      }
+    }
+    return urls;
+  } catch {
+    return [];
+  }
+}
+
 export async function GET() {
   return NextResponse.json({
     configured: true,
@@ -29,22 +58,9 @@ export async function POST(request: Request) {
     // No body or invalid JSON — fall through to submit all sitemap URLs
   }
 
-  // If no URLs provided, submit all pages from the sitemap
+  // If no URLs provided, submit all pages from the live sitemap.
   if (urls.length === 0) {
-    urls = [
-      `${SITE.url}/`,
-      `${SITE.url}/about`,
-      `${SITE.url}/projects/engineering-hub`,
-      `${SITE.url}/projects/hawk-buddy`,
-      `${SITE.url}/projects/campus-career`,
-      `${SITE.url}/samuel-ukpai`,
-      `${SITE.url}/sam-surf`,
-      `${SITE.url}/samuel-surfboard`,
-      `${SITE.url}/sam-surf-ai`,
-      `${SITE.url}/ukpai-dev`,
-      `${SITE.url}/samuel-surf`,
-      `${SITE.url}/nasurf`,
-    ];
+    urls = await getSitemapUrls();
   }
 
   const result = await submitToIndexNow(urls);
