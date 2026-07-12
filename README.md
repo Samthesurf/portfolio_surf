@@ -1,81 +1,109 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Samuel Surf
 
-## Getting Started
+**A portfolio that grew into a publishing system.**
 
-First, run the development server:
+[Live portfolio](https://samuelsurf.me) · [Writing studio](https://write.samuelsurf.me) · [GitHub](https://github.com/Samthesurf)
+
+This started as a personal portfolio. It did not stay that way.
+
+The site now carries project case studies, a blog, an about section, search-friendly metadata, and a private browser writing studio. The public side explains what I build. The studio is where I actually write and manage the material behind it.
+
+That split is the interesting part of the repository. It is a portfolio on the surface, but underneath it is also a small content platform.
+
+## What is in here
+
+- A responsive portfolio homepage with project, skills, testimonials, blog, FAQ, and contact sections.
+- Project pages for work such as Campus to Career, Engineering Hub, and Hawk Buddy.
+- A blog with Markdown content, reading time, article navigation, RSS, and revision support.
+- A private writing studio at `write.samuelsurf.me`, protected through Cloudflare Access.
+- Browser editing with autosave, media uploads, previews, revisions, and image placement at the editor cursor.
+- SEO and GEO surfaces including `sitemap.xml`, `robots.txt`, `llms.txt`, `llms-full.txt`, JSON-LD, and project metadata.
+- Cloudflare R2-backed content and media routes instead of a separate CMS server.
+- A small APK update script for keeping the Hawk Buddy download page current.
+
+## The shape of the codebase
+
+```text
+app/                 Public routes, blog pages, project pages, and studio routes
+components/          Portfolio sections, blog UI, editor, preview, and navigation
+content/             Articles and project content
+lib/                 Blog rendering, storage, authentication, metadata, and helpers
+public/              Public images and downloadable assets
+scripts/             Maintenance tasks such as APK updates and IndexNow submission
+tests/               Blog and content checks
+wrangler.jsonc       Cloudflare Workers and R2 deployment configuration
+```
+
+The application uses the Next.js App Router. Public pages and the writing studio live in the same project, but the studio has its own authentication and API boundary.
+
+## Stack
+
+- Next.js 16 and React 19
+- TypeScript
+- Tailwind CSS 4
+- TipTap for the writing editor
+- OpenNext for Cloudflare Workers deployment
+- Cloudflare Access for studio authentication
+- Cloudflare R2 for blog and media storage
+- `gray-matter`, `remark`, `rehype`, and `mdast` tooling for content rendering
+
+## A small tour for anyone reading the source
+
+The public journey starts in `app/page.tsx` and moves through reusable sections in `components/`. Project pages and blog posts are ordinary routes, so the content is easy to inspect and extend.
+
+The private journey starts in `app/studio/` and `components/studio/`. That part of the codebase is less like a portfolio template and more like an editor product: it has authentication, drafts, metadata, previews, revisions, uploads, and the awkward edge cases that appear when someone is writing in a browser over a slow network.
+
+Recent work has focused on making the studio resilient rather than merely pretty. Autosave should not lose a paragraph. An uploaded image should stay near the cursor that requested it. A revision should be recoverable. Those details are why this repository is still moving.
+
+## Run it locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-## Environment variables
-
-Copy the required values into `.env.local` (or your hosting provider's env configuration).
-All SEO/GEO features degrade gracefully when a variable is unset, so nothing is strictly required,
-but the following are strongly recommended to complete ownership verification.
-
-| Variable | Purpose | Where to get it |
-|----------|---------|-----------------|
-| `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Injects the `google-site-verification` meta tag on `<head>` so Google Search Console can confirm ownership. | https://search.google.com/search-console → Add property (Meta tag method) |
-| `NEXT_PUBLIC_BING_SITE_VERIFICATION` | Injects the `msvalidate.01` meta tag for Bing Webmaster Tools. | https://www.bing.com/webmasters → Add site (Meta tag method) |
-| `NEXT_PUBLIC_YANDEX_SITE_VERIFICATION` | Optional — `yandex-verification` meta tag. | https://webmaster.yandex.com |
-
-Example `.env.local`:
+Useful checks:
 
 ```bash
-NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=abc123_your_google_token
-NEXT_PUBLIC_BING_SITE_VERIFICATION=1A2B3C4D5E6F_your_bing_token
+npm run lint
+npm run build
+npm run test:blog
+npm run cf:build
 ```
 
-After adding tokens, redeploy so Next.js bakes them into the rendered HTML head.
+The deployment commands are available for Cloudflare Workers:
 
-## SEO / GEO surfaces
+```bash
+npm run deploy
+# or
+npm run upload
+```
 
-This site exposes machine-readable discovery files:
+Do not copy production secrets into Git. Local Cloudflare and studio values belong in the appropriate ignored environment files.
 
-- `/sitemap.xml` — auto-generated from `app/sitemap.ts`
-- `/robots.txt` — auto-generated from `app/robots.ts` (allowlists GPTBot, ClaudeBot, Google-Extended, PerplexityBot, Applebot-Extended, CCBot, and others)
-- `/llms.txt` — concise manifest for AI assistants (llmstxt.org spec)
-- `/llms-full.txt` — expanded bio + case studies for deeper AI context
-- Root `<script type="application/ld+json">` — `@graph` with `Person` / `Organization` / `WebSite` / `ProfilePage` entities
-- `/about` — human + LLM-optimized FAQ page with `FAQPage` + `ProfilePage` + `BreadcrumbList` JSON-LD
-- Per-project JSON-LD (`SoftwareApplication` + `BreadcrumbList`) on `/projects/*` pages
+## Verification and SEO setup
 
-## Maintenance
+The site can add search-engine ownership values through `.env.local`:
 
-### Updating Hawk Buddy APK
-When releasing a new version of the Hawk Buddy app:
-1. Upload the new APK (e.g., `hawk-buddy-v1-3.apk`) to your Cloudflare R2 bucket.
-2. Run the update script:
-   ```bash
-   npm run update-apk -- v1-3
-   ```
-   This will update the download link and documentation references.
-3. Commit the changes.
+```bash
+NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=your_google_token
+NEXT_PUBLIC_BING_SITE_VERIFICATION=your_bing_token
+```
+
+The values are optional. The site still builds without them, but a redeploy is needed after adding them because Next.js renders the metadata into the deployed site.
+
+## Why this repository is worth following
+
+The homepage is the visible result. The more useful story is the progression underneath it:
+
+```text
+portfolio page
+    → project case studies
+    → blog and structured content
+    → private writing studio
+    → storage, revisions, media, and deployment tooling
+```
+
+It is a record of turning a personal website into something I can use to publish, maintain, and explain the work behind the portfolio.
