@@ -28,21 +28,15 @@
     }
   ],
   "vars": {
-    "STUDIO_ALLOWED_EMAIL": "ukpsamuel67@gmail.com"
+    "STUDIO_ALLOWED_EMAIL": "ukpsamuel67@gmail.com",
+    "CF_ACCESS_TEAM_DOMAIN": "https://samuelsurf.cloudflareaccess.com",
+    "CF_ACCESS_AUD": "ab82f3bc0279e43c004f48322aa2bf50df58d3db9e2ad52f271ae83357f55a9b"
   },
   "observability": {
     "enabled": true,
     "head_sampling_rate": 1
   },
   "routes": [
-    {
-      "pattern": "samuelsurf.me/*",
-      "zone_name": "samuelsurf.me"
-    },
-    {
-      "pattern": "www.samuelsurf.me/*",
-      "zone_name": "samuelsurf.me"
-    },
     {
       "pattern": "write.samuelsurf.me",
       "custom_domain": true
