@@ -33,7 +33,9 @@ test("a published article loads with content and matching table of contents", ()
   const post = getBlogPost("building-obe-portal-accreditation");
   assert.ok(post);
   assert.match(post.content, /COREN accreditation review/);
-  assert.ok(post.headings.some((heading) => heading.title === "Lessons I would carry into another institutional project"));
+  assert.ok(
+    post.headings.some((heading) => heading.title === "What I took away from the project"),
+  );
   assert.equal(post.coverImage, "/blog/abuad-engineering-obe-portal/obe-portal.webp");
 });
 

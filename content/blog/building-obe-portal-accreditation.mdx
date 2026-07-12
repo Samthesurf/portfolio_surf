@@ -1,8 +1,8 @@
 ---
 title: "Building an OBE Portal That Made Accreditation Information Easier to Find"
-excerpt: "How I turned a large collection of engineering programme records into a clear, searchable portal that supported ABUAD's COREN accreditation review."
+excerpt: "How I organised engineering programme records into a searchable portal used during ABUAD's COREN accreditation review."
 publishedAt: "2026-07-12T05:28:13+01:00"
-updatedAt: "2026-07-12T05:28:13+01:00"
+updatedAt: "2026-07-12T16:17:31+01:00"
 coverImage: "/blog/abuad-engineering-obe-portal/obe-portal.webp"
 coverAlt: "ABUAD College of Engineering OBE portal displayed on a desktop browser"
 tags:
@@ -16,57 +16,43 @@ draft: false
 author: "Samuel Ukpai"
 ---
 
-Accreditation is not only about having the right information. The people reviewing a programme must also be able to find that information quickly, understand how it connects, and move from a broad policy to the evidence behind it without getting lost.
+During ABUAD's preparation for a COREN accreditation review, the College of Engineering already had the records a reviewer would expect to see. The difficulty appeared when someone tried to move through them. Course compacts, handbooks, outcome mappings and departmental information covered a lot of ground, so someone following a single question could pass through several files and folders before reaching the exact record that answered it.
 
-That was the practical problem behind the **ABUAD College of Engineering OBE Portal**. The College had detailed programme information, course compacts, learning outcomes, mappings, policies, and departmental records. My job was to turn that volume of material into a website that felt clear rather than overwhelming.
+The brief was straightforward: make the material easier to find.
 
-The result was a responsive portal that helped present the College's information during a COREN accreditation review. The department subsequently obtained accreditation. The website was one part of that wider institutional effort, but it made the evidence easier to access and explain.
+I built the **ABUAD College of Engineering OBE Portal** around that problem. It brought the College's programme information into one website, with routes that allowed a visitor to move from a department overview to its objectives, outcomes and course evidence. During the review, Dr A.O. Ojo showed the portal to the COREN representatives. His message afterwards was simple: they found what they needed.
 
-<Callout type="note" title="The outcome">
-  The goal was not to decorate existing documents. It was to help a reviewer answer the next question quickly and reach the supporting information without unnecessary searching.
+<Callout type="note" title="What the portal needed to do">
+  A reviewer should be able to follow a question through the site and reach the supporting record without needing someone beside them to explain where everything was kept.
 </Callout>
 
-## The problem was information access, not a lack of information
+## What I was working with
 
-The source material covered the things an engineering programme is expected to communicate clearly:
+The source material included Programme Educational Objectives (PEOs), the 12 COREN-aligned Programme Outcomes (POs), Course Learning Outcomes (CLOs) and PO-to-CLO mappings. There were also handbooks, departmental records, quality assurance information and 44 engineering course compacts.
 
-- Programme Educational Objectives (PEOs)
-- The 12 COREN-aligned Programme Outcomes (POs)
-- Course Learning Outcomes (CLOs)
-- PO-to-CLO mapping
-- Course compacts and weekly lecture plans
-- Student and departmental handbooks
-- Departmental history, philosophy, vision, and mission
-- Quality assurance and Continuous Quality Improvement information
-- Staff, laboratories, and programme context
+One very long page would have been quick to assemble. It would also have left readers scrolling through the same mass of information, only this time in a browser. So I began with the relationships between the records. Which page should lead to a course compact? Where would someone expect to find a programme outcome? What should appear when a course code is searched?
 
-Putting all of that into one long page would technically make it available, but not genuinely accessible. A reviewer would still need to scan large blocks of text or ask someone where a particular record was stored.
+Those questions shaped the site before I spent much time on its appearance.
 
-I treated the project as an information architecture problem first and a visual design problem second.
+## Following the way a reviewer searches
 
-## Designing around the reviewer's next question
+A visitor might open a department page first, read its Programme Educational Objectives and then check how those objectives connect to the programme outcomes. The next stop could be a course compact showing the learning outcomes for one course. The navigation had to support that movement without forcing the visitor back to the home page after every step.
 
-A useful accreditation portal should follow the reader's train of thought.
+I grouped the content by department and by OBE concept. Course information, mappings and handbooks were linked from the places where they were most likely to be needed. The structure became much easier to understand once I stopped treating each document as a separate item and started treating it as part of a trail.
 
-A visitor might begin with a department profile, then ask what the programme is trying to achieve. That leads to the PEOs. From there, the visitor may want to inspect the programme outcomes, see how individual courses contribute to those outcomes, and then open the relevant course compact.
+### Search had to return useful answers
 
-The navigation therefore needed to make those relationships visible. I grouped content by department and by OBE concept, then added direct paths into course information, mappings, handbooks, and general College material.
+Page-title search wasn't enough for this material. A reviewer might enter a lecturer's name, a course code or a phrase remembered from a course description. Someone else might search for a handbook or a particular outcome.
 
-### Search needed to understand the content
+I built the search index from the College's structured data. Results are labelled by category and link back to the relevant page, so a search for a course doesn't end at a loose text match. It opens a route into the course information itself.
 
-A simple search over page titles would not be enough. Someone might search for a course code, lecturer, outcome, handbook, department, or phrase from a course description.
+That detail changed the feel of the portal. Search became a practical way to move around the site, especially for a visitor who didn't yet know how the College had organised its records.
 
-I built a searchable index from the College's structured data. Each result carries a category and a route back to the relevant part of the portal. The search can distinguish between courses, PEOs, POs, departments, handbooks, and general information.
+### Keeping 44 course compacts consistent
 
-This made search a navigation tool rather than a text-matching box.
+The amount of repeated information made hard-coded React pages risky. A correction to a department name or outcome could be made in one component and missed in another. With 44 course compacts in the portal, that kind of drift would be difficult to spot during a review.
 
-### The data needed one consistent structure
-
-The portal contains consolidated College information and 44 engineering course compacts. Repeating that information directly across React components would have made corrections slow and inconsistencies likely.
-
-Instead, the content is represented as structured data. The interface reads from that source to build department pages, course views, outcome lists, and search results.
-
-A simplified version of the idea looks like this:
+I kept the content in a shared data structure and let the interface build its pages from that source. A simplified version looks like this:
 
 ```js
 export const collegeData = {
@@ -80,65 +66,55 @@ export const collegeData = {
 };
 ```
 
-That separation made the website easier to extend and reduced the chance that the same fact would be presented differently in two places.
+This gave the website one place to read the core records from. It also made gaps more visible. If a course compact or mapping was missing, the problem appeared in the data instead of hiding inside a page layout.
 
-## Building a calm interface for dense material
+## Making dense information easier to read
 
-The content is formal and detailed, so the interface needed to reduce cognitive load.
-
-I used clear section labels, restrained colour, generous spacing, and consistent cards to separate concepts. Department navigation stays predictable as the reader moves between programme objectives, outcomes, mappings, and course details.
+The portal contains formal material, and some pages are naturally long. I used clear labels, restrained colour and enough spacing to stop adjacent ideas from running into one another. The department navigation stays in familiar positions as the visitor moves through objectives, outcomes and course details.
 
 <ArticleImage
   src="/blog/abuad-engineering-obe-portal/obe-portal.webp"
   alt="The OBE portal showing College of Engineering information and department navigation"
-  caption="The portal organises College information, OBE criteria, department records, and course evidence into a single responsive interface."
+  caption="The portal brings College information, OBE criteria, department records and course evidence into one responsive interface."
   width={1512}
   height={770}
   wide
 />
 
-The same hierarchy had to work on smaller screens. Desktop space allows persistent navigation and broader layouts. Mobile requires the same information to remain reachable without allowing the controls to crowd the content.
+Mobile needed separate attention. A desktop layout has room to keep more navigation visible, while a phone can become crowded very quickly. The content stayed intact on smaller screens, with the controls adjusted to suit the available space.
 
-The website was built with React and Vite, then deployed through Cloudflare Pages. That gave the department a fast public URL that could be opened without a special account or local setup.
+The portal was built with React and Vite and deployed through Cloudflare Pages. The public URL could be opened by the accreditation team without an account or any local setup.
 
-## What the accreditation moment validated
+## Dr Ojo's feedback after the review
 
-The strongest feedback came from Dr A.O. Ojo, Head of the Computer Engineering programme, after showing the website to the COREN representatives:
+After presenting the website to the COREN representatives, Dr A.O. Ojo, Head of the Computer Engineering programme, sent this message:
 
 > "This website was very good. I showed it to the people from COREN, and they were impressed. They found all they needed, and your speed was incredible. Thank you."
 
-That feedback mattered because it described the exact outcome the portal was designed to produce: the visitors found what they needed.
+The line I remember most is "They found all they needed." It was a direct test of the work. The portal had been built around retrieval, and the people using it during the review were able to reach the information they came for.
 
-It would be inaccurate to claim that a website alone secured accreditation. Accreditation depends on the programme, its people, facilities, curriculum, processes, and evidence. The portal's contribution was to make that work easier to inspect and understand.
+Accreditation came from the programme's curriculum, staff, facilities, processes and evidence. The website had a narrower job: make that body of work easier to inspect. Dr Ojo's message confirmed that it did its part.
 
-## Lessons I would carry into another institutional project
+## What I took away from the project
 
-### 1. Findability is part of the product
+### Findability belongs in the product
 
-Information is not truly available when only the person who organised it knows where it is. Search, navigation, labels, and cross-links are core product features when the website contains formal evidence.
+A record can exist and still be practically unavailable. If only the person who filed it knows where it is, a visitor is going to struggle. On a site like this, search labels and links deserve the same care as the visible design.
 
-### 2. Model the content before styling it
+### Structure the content early
 
-A stable data structure makes dense websites easier to build, verify, and maintain. It also exposes missing or inconsistent information earlier than a visual mock-up would.
+Working out the data shape first saved time later. It reduced repeated content and made inconsistencies easier to catch before they reached the interface. For dense institutional websites, this early work affects almost every page that follows.
 
-### 3. Design for the visitor's questions
+### Write for someone outside the department
 
-The organisation's internal filing structure may not match the visitor's mental model. Navigation should follow what a visitor is likely to ask next.
+OBE has its own vocabulary. PEO, PO and CLO are normal terms inside an engineering programme, but a visitor still needs enough context to understand where each one fits. Plain explanations helped the formal records remain readable without changing their meaning.
 
-### 4. Use plain language around formal terms
+## The portal after accreditation
 
-OBE requires precise terminology, but explanations can still be direct. Acronyms and criteria should be introduced with enough context for a reader who is not already immersed in the department's documents.
+The review gave the project a clear deadline, though the website remains useful beyond that event. Students can look up programme outcomes and course compacts. Staff have a public reference for department information, and visitors can see how the College documents its OBE process.
 
-### 5. Make the real outcome visible
-
-The outcome was not simply that a React website went live. The meaningful outcome was that stakeholders could present a large body of accreditation information clearly, and the reviewers could find the material they needed.
-
-## The product beyond the review
-
-The portal remains useful after the accreditation exercise. Students can understand programme outcomes, staff can reference course compacts, and visitors can explore how the College structures its OBE process.
-
-That is the kind of software work I value most: taking a real operational problem, organising it carefully, and delivering something people can actually use when it matters.
+For me, that is the useful part of this project. A large collection of records became something people could actually move through when the information mattered.
 
 You can [visit the live ABUAD Engineering OBE Portal](https://abuadengineering.pages.dev) or [view the source code on GitHub](https://github.com/Samthesurf/abuad_engineering_web).
 
-If your organisation has important information that is technically available but difficult for people to navigate, [let's discuss how to turn it into a clear digital product](/#contact).
+If your organisation has a similar collection of important information that people struggle to navigate, [we can discuss the project here](/#contact).
