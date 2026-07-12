@@ -14,7 +14,7 @@ That split is the interesting part of the repository. It is a portfolio on the s
 
 - A responsive portfolio homepage with project, skills, testimonials, blog, FAQ, and contact sections.
 - Project pages for work such as Campus to Career, Engineering Hub, and Hawk Buddy.
-- A blog with Markdown content, reading time, article navigation, RSS, and revision support.
+- A first-party MDX blog with reading time, article navigation, RSS, and revision support.
 - A private writing studio at `write.samuelsurf.me`, protected through Cloudflare Access.
 - Browser editing with autosave, media uploads, previews, revisions, and image placement at the editor cursor.
 - SEO and GEO surfaces including `sitemap.xml`, `robots.txt`, `llms.txt`, `llms-full.txt`, JSON-LD, and project metadata.
