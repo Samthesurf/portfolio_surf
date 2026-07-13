@@ -95,10 +95,6 @@ export default function TestimonialsSection() {
               </svg>
             </div>
 
-            {/* Blue curved divider/ring motif behind/around the portrait */}
-            <div className="absolute -left-8 -top-8 w-36 h-36 rounded-full border-2 border-blue-500/20 dark:border-blue-400/20 pointer-events-none z-10" />
-            <div className="absolute -right-12 -bottom-12 w-48 h-48 rounded-full border-[6px] border-blue-500/10 dark:border-blue-400/10 pointer-events-none z-10" />
-
             {/* Active image */}
             <AnimatePresence mode="wait">
               <motion.div
