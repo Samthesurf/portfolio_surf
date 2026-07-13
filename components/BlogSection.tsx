@@ -11,9 +11,6 @@ export default function BlogSection() {
       id="blog"
       className="relative overflow-hidden bg-white px-6 py-24 dark:bg-[#030303] md:px-12 lg:px-24"
     >
-      <div className="absolute right-0 top-20 h-96 w-96 rounded-full bg-blue-500/5 blur-3xl dark:bg-blue-500/10" />
-      <div className="absolute bottom-20 left-0 h-96 w-96 rounded-full bg-cyan-500/5 blur-3xl dark:bg-cyan-500/10" />
-
       <div className="container relative z-10 mx-auto max-w-6xl">
         <div className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-3xl">
