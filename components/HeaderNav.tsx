@@ -8,6 +8,7 @@ import { useTheme } from './ThemeContext';
 const navItems = [
   { name: 'Home', hash: '' },
   { name: 'About', hash: '/about', absolute: true as const },
+  { name: 'Services', hash: '#capabilities' },
   { name: 'Technologies', hash: '#skills' },
   { name: 'Projects', hash: '#projects' },
   { name: 'Blog', hash: '/blog', absolute: true as const },
@@ -74,7 +75,7 @@ export default function HeaderNav() {
         )}
 
         {/* Logo Area + Mobile Controls (left side) */}
-        <div className="flex w-full items-center justify-between gap-2 md:w-auto md:justify-start">
+        <div className="flex w-full items-center justify-between gap-2 lg:w-auto lg:justify-start">
           {/* Logo */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -90,7 +91,7 @@ export default function HeaderNav() {
           </svg>
 
           {/* Theme Toggle & Menu (Mobile Only) - positioned next to logo */}
-          <div className="flex md:hidden items-center gap-2">
+          <div className="flex lg:hidden items-center gap-2">
             {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
@@ -125,7 +126,7 @@ export default function HeaderNav() {
         </div>
 
         {/* Navigation Links - Desktop */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-6 xl:gap-8">
           {navItems.map((item) => {
             const href = 'absolute' in item && item.absolute ? item.hash : `${hrefPrefix}${item.hash}`;
             return (
@@ -142,7 +143,7 @@ export default function HeaderNav() {
         </div>
 
         {/* Right Side: Theme Toggle (Desktop) + CTA Button */}
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3">
           {/* Theme Toggle Button - Desktop Only */}
           <button
             onClick={toggleTheme}
@@ -167,7 +168,7 @@ export default function HeaderNav() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
-              className="absolute top-full right-0 mt-2 w-64 max-w-[calc(100vw-2rem)] py-2 bg-white/90 dark:bg-black/90 backdrop-blur-xl border border-black/10 dark:border-white/10 rounded-2xl shadow-xl md:hidden"
+              className="absolute top-full right-0 mt-2 w-64 max-w-[calc(100vw-2rem)] py-2 bg-white/90 dark:bg-black/90 backdrop-blur-xl border border-black/10 dark:border-white/10 rounded-2xl shadow-xl lg:hidden"
             >
               {navItems.map((item) => {
                 const href = 'absolute' in item && item.absolute ? item.hash : `${hrefPrefix}${item.hash}`;

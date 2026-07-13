@@ -1,6 +1,7 @@
 import AnimatedText from "../components/AnimatedText";
 import HeaderNav from "../components/HeaderNav";
 import HeroVisual from "../components/HeroVisual";
+import CapabilitiesSection from "../components/CapabilitiesSection";
 import SkillsSection from "../components/SkillsSection";
 import ProjectsSection from "../components/ProjectsSection";
 import TestimonialsSection from "../components/TestimonialsSection";
@@ -72,6 +73,9 @@ export default function Home() {
           </div>
         </div>
       </main>
+
+      {/* Capabilities Section */}
+      <CapabilitiesSection />
 
       {/* Skills/Services Section */}
       <SkillsSection />
