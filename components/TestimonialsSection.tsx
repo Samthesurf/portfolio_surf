@@ -93,14 +93,14 @@ export default function TestimonialsSection() {
               <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border-2 border-white shadow-md dark:border-white/20">
                 <Image
                   src={anuoluwapoAkinola}
-                  alt="Portrait of Anuoluwapo Deborah Akinola"
+                  alt="Portrait of Anuoluwapo Akinola"
                   fill
                   sizes="64px"
                   className="object-cover object-top"
                 />
               </div>
               <div>
-                <p className="font-bold text-slate-900 dark:text-white">Anuoluwapo Deborah Akinola</p>
+                <p className="font-bold text-slate-900 dark:text-white">Anuoluwapo Akinola</p>
                 <p className="text-sm leading-relaxed text-slate-600 dark:text-gray-400">
                   Campus to Career 2.0 Organising Team
                 </p>
