@@ -5,7 +5,7 @@ import { useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
 import drAoOjo from "../assets/abuad-engineering/dr-ao-ojo.jpeg";
-import anuoluwapoAkinola from "../assets/campus-career/anuoluwapo-akinola.png";
+import anuoluwapoAkinola from "../assets/campus-career/anuoluwapo-akinola.jpg";
 
 const testimonials = [
   {
